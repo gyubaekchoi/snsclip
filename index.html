@@ -2124,32 +2124,66 @@
               <div class="page-title" style="font-size:15px">위젯에 보여주고 싶은 콘텐츠를 추가해 주세요</div>
             </div>
 
-            <div class="card" style="padding:18px 20px">
-              <div class="row-between" style="flex-wrap:wrap;gap:12px">
-                <div class="src-head">
-                  <div class="section-title" style="margin:0">내가 태그된 게시물</div>
-                  <span class="upd">26.03.27 마지막 업데이트</span>
-                  <button class="link-btn" onclick="toast('인스타그램에서 최신 게시물을 다시 가져왔어요')" style="background:none">새로고침
-                    ↺</button>
+            <div class="tabs" style="margin: 0 20px 18px 20px;">
+              <button class="tab" id="tab-add-review" onclick="switchAddTab('review')">기존 리뷰에서 가져오기</button>
+              <button class="tab on" id="tab-add-ig" onclick="switchAddTab('ig')">인스타그램에서 가져오기</button>
+              <button class="tab" id="tab-add-tiktok" onclick="switchAddTab('tiktok')">틱톡에서 가져오기</button>
+            </div>
+
+            <div id="add-pane-review" style="display:none;">
+              <div class="card" style="padding:18px 20px; margin-top:0;">
+                <div class="row-between" style="flex-wrap:wrap;gap:12px">
+                  <div class="src-head">
+                    <div class="section-title" style="margin:0">내 쇼핑몰 베스트 리뷰</div>
+                  </div>
+                  <div class="search">
+                    <span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+                    <input id="review-search" placeholder="작성자, 내용 검색" oninput="renderReviewFeed()">
+                  </div>
                 </div>
-                <div class="search">
-                  <span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg></span>
-                  <input id="feed-search" placeholder="작성자, 내용 검색" oninput="renderFeed()">
+                <div class="feed" id="review-feed">
+                  <div class="feed-head">
+                    <div style="width:104px; padding-left:16px;">작성자</div>
+                    <div style="flex:1">리뷰 내용</div>
+                    <div style="width:84px">도움돼요</div>
+                    <div style="width:70px"></div>
+                  </div>
+                  <div id="review-feed-rows"></div>
                 </div>
               </div>
+            </div>
 
-              <div class="feed" id="feed">
-                <div class="feed-head">
-                  <div style="width:104px; padding-left:16px;">작성자</div>
-                  <div style="flex:1">게시글</div>
-                  <div style="width:84px">인기도</div>
-                  <div style="width:70px"></div>
+            <div id="add-pane-ig" style="display:block;">
+              <div class="card" style="padding:18px 20px; margin-top:0;">
+                <div class="row-between" style="flex-wrap:wrap;gap:12px">
+                  <div class="src-head">
+                    <div class="section-title" style="margin:0">내가 태그된 게시물</div>
+                    <span class="upd">26.03.27 마지막 업데이트</span>
+                    <button class="link-btn" onclick="toast('인스타그램에서 최신 게시물을 다시 가져왔어요')" style="background:none">새로고침 ↺</button>
+                  </div>
+                  <div class="search">
+                    <span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+                    <input id="feed-search" placeholder="작성자, 내용 검색" oninput="renderFeed()">
+                  </div>
                 </div>
-                <div id="feed-rows"></div>
+
+                <div class="feed" id="feed">
+                  <div class="feed-head">
+                    <div style="width:104px; padding-left:16px;">작성자</div>
+                    <div style="flex:1">게시글</div>
+                    <div style="width:84px">인기도</div>
+                    <div style="width:70px"></div>
+                  </div>
+                  <div id="feed-rows"></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="add-pane-tiktok" style="display:none;">
+              <div class="card" style="padding:18px 20px; margin-top:0;">
+                <div class="empty-box" style="margin:0">
+                  <p>틱톡 연동 기능은 준비 중이에요.</p>
+                </div>
               </div>
             </div>
           </section>
@@ -2454,6 +2488,20 @@
       g5: ['https://loremflickr.com/320/480/protein,salad?lock=15', 'https://picsum.photos/seed/clip5/320/480'],
       g6: ['https://loremflickr.com/320/480/tofu,vegan?lock=16', 'https://picsum.photos/seed/clip6/320/480'],
     };
+    const REVIEWS = [
+      { g: 'r1', author: '김*민', cap: '맛있어요! 다이어트 식단으로 최고입니다.', likes: '12', cmts: '0', views: '124' },
+      { g: 'r2', author: '이*영', cap: '재구매합니다. 신선하고 양도 많아요.', likes: '8', cmts: '0', views: '89' },
+      { g: 'r3', author: '박*준', cap: '배송 빠르고 포장 꼼꼼해요.', likes: '3', cmts: '0', views: '31' },
+      { g: 'r4', author: '정*현', cap: '소스가 너무 맛있어요.', likes: '5', cmts: '1', views: '51' },
+      { g: 'r5', author: '최*우', cap: '포만감이 엄청나요. 또 시킬게요.', likes: '1', cmts: '0', views: '17' },
+    ];
+    const REVIEW_IMG = {
+      r1: ['https://loremflickr.com/320/480/salad,food?lock=31', 'https://picsum.photos/seed/rev1/320/480'],
+      r2: ['https://loremflickr.com/320/480/salad,fresh?lock=32', 'https://picsum.photos/seed/rev2/320/480'],
+      r3: ['https://loremflickr.com/320/480/box,salad?lock=33', 'https://picsum.photos/seed/rev3/320/480'],
+      r4: ['https://loremflickr.com/320/480/sauce,salad?lock=34', 'https://picsum.photos/seed/rev4/320/480'],
+      r5: ['https://loremflickr.com/320/480/meal,salad?lock=35', 'https://picsum.photos/seed/rev5/320/480'],
+    };
     const PROD_IMG = {
       p1: ['https://loremflickr.com/240/240/chicken,salad?lock=21', 'https://picsum.photos/seed/prod1/240/240'],
       p2: ['https://loremflickr.com/240/240/ricotta,salad?lock=22', 'https://picsum.photos/seed/prod2/240/240'],
@@ -2464,9 +2512,9 @@
     function dressImages() {
       document.querySelectorAll('.clip,.pthumb,.pv,.pbg').forEach(el => {
         if (el.querySelector('img')) return;
-        const cls = [...el.classList].find(c => CLIP_IMG[c] || PROD_IMG[c]);
+        const cls = [...el.classList].find(c => CLIP_IMG[c] || PROD_IMG[c] || REVIEW_IMG[c]);
         if (!cls) return;
-        const [u, f] = CLIP_IMG[cls] || PROD_IMG[cls];
+        const [u, f] = CLIP_IMG[cls] || PROD_IMG[cls] || REVIEW_IMG[cls];
         const img = document.createElement('img');
         img.loading = 'lazy'; img.alt = '';
         img.onerror = () => { if (img.getAttribute('src') !== f) img.src = f; else img.remove(); };
@@ -2482,8 +2530,18 @@
     let qTotal = 0;
     let prodSel = new Set();
     let reorderMode = false;
+    let queueSourceType = 'ig'; // 'review' or 'ig'
 
-    const isExposed = i => exposed.some(e => e.clip === i);
+    function switchAddTab(tabId) {
+      document.querySelectorAll('#s-add .tab').forEach(t => t.classList.remove('on'));
+      document.getElementById('tab-add-' + tabId).classList.add('on');
+      document.getElementById('add-pane-review').style.display = 'none';
+      document.getElementById('add-pane-ig').style.display = 'none';
+      document.getElementById('add-pane-tiktok').style.display = 'none';
+      document.getElementById('add-pane-' + tabId).style.display = 'block';
+    }
+
+    const isExposed = (i, type = 'ig') => exposed.some(e => e.clip === i && e.type === type);
 
     /* ═════════ screens / modals / toast ═════════ */
     function goScreen(id) {
@@ -2590,6 +2648,8 @@
       feedSel = new Set();
       document.getElementById('feed-search').value = '';
       renderFeed();
+      document.getElementById('review-search').value = '';
+      renderReviewFeed();
       goScreen('s-add');
     }
     function visibleClips() {
@@ -2598,12 +2658,47 @@
         !q || c.author.toLowerCase().includes(q) || c.cap.toLowerCase().includes(q)
       );
     }
+    function visibleReviews() {
+      const q = document.getElementById('review-search').value.trim().toLowerCase();
+      return REVIEWS.map((c, i) => ({ c, i })).filter(({ c, i }) =>
+        !q || c.author.toLowerCase().includes(q) || c.cap.toLowerCase().includes(q)
+      );
+    }
+    function renderReviewFeed() {
+      const rows = document.getElementById('review-feed-rows');
+      const list = visibleReviews();
+      rows.innerHTML = '';
+      list.forEach(({ c, i }) => {
+        const added = isExposed(i, 'review');
+        const row = document.createElement('div');
+        row.className = 'feed-row' + (added ? ' added' : '');
+        row.innerHTML =
+          '<div class="author" style="width:104px; padding-left:16px;">' + c.author + '</div>' +
+          '<div class="thumb clip ' + c.g + '" style="width:44px;height:66px"></div>' +
+          '<div class="fmeta"><div class="cap">' + c.cap + '</div>' +
+          '<a class="link-btn orig">리뷰 보기 ↗</a></div>' +
+          '<div class="fstats"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right:2px; margin-top:-2px;"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> ' + c.likes + '</div>' +
+          (added
+            ? '<div class="added-tag">노출중 ✓</div>'
+            : '<button class="btn btn-secondary btn-sm" style="width:70px">추가하기</button>');
+        if (!added) {
+          const addBtn = row.querySelector('button');
+          addBtn.onclick = () => { startQueue([i], 'review'); };
+        }
+        row.querySelector('.orig').onclick = (e) => { e.stopPropagation(); toast('원본 리뷰 상세로 이동해요 (시연용)'); };
+        rows.appendChild(row);
+      });
+      if (!list.length) {
+        rows.innerHTML = '<div style="text-align:center;color:var(--t3);font-size:12.5px;padding:36px 0">검색 결과가 없어요</div>';
+      }
+      dressImages();
+    }
     function renderFeed() {
       const rows = document.getElementById('feed-rows');
       const list = visibleClips();
       rows.innerHTML = '';
       list.forEach(({ c, i }) => {
-        const added = isExposed(i);
+        const added = isExposed(i, 'ig');
         const row = document.createElement('div');
         row.className = 'feed-row' + (added ? ' added' : '');
         row.innerHTML =
@@ -2617,7 +2712,7 @@
             : '<button class="btn btn-secondary btn-sm" style="width:70px">추가하기</button>');
         if (!added) {
           const addBtn = row.querySelector('button');
-          addBtn.onclick = () => { startQueue([i]); };
+          addBtn.onclick = () => { startQueue([i], 'ig'); };
         }
         row.querySelector('.orig').onclick = (e) => { e.stopPropagation(); toast('인스타그램 원본 게시물로 이동해요 (시연용)'); };
         rows.appendChild(row);
@@ -2646,7 +2741,8 @@
     function addSelected() { if (feedSel.size) startQueue([...feedSel]); }
 
     /* ═════════ scenario B : product + title queue ═════════ */
-    function startQueue(idxs) {
+    function startQueue(idxs, type = 'ig') {
+      queueSourceType = type;
       queue = idxs.slice(); qIdx = 0; qTotal = idxs.length;
       openProductStep();
     }
@@ -2658,7 +2754,8 @@
     function openProductStep() {
       prodSel = new Set();
       document.getElementById('prod-search').value = '';
-      const c = CLIPS[queue[qIdx]];
+      const src = queueSourceType === 'review' ? REVIEWS : CLIPS;
+      const c = src[queue[qIdx]];
       document.getElementById('prod-sub').textContent = c.author + ' · "' + c.cap.slice(0, 18) + '…" 클립이 선택한 상품 상세에 함께 노출돼요.';
       queueTag('prod-queue-tag');
       renderProducts();
@@ -2688,7 +2785,8 @@
       setTimeout(openTitleStep, 200);
     }
     function openTitleStep() {
-      const c = CLIPS[queue[qIdx]];
+      const src = queueSourceType === 'review' ? REVIEWS : CLIPS;
+      const c = src[queue[qIdx]];
       document.getElementById('title-input').value = '';
       document.getElementById('title-len').textContent = '0';
       const pb = document.getElementById('phone-bg');
@@ -2704,19 +2802,20 @@
     function updatePreview() {
       const v = document.getElementById('title-input').value;
       document.getElementById('title-len').textContent = v.length;
-      document.getElementById('phone-title').textContent = v || CLIPS[queue[qIdx]].cap;
+      const src = queueSourceType === 'review' ? REVIEWS : CLIPS;
+      document.getElementById('phone-title').textContent = v || src[queue[qIdx]].cap;
     }
     function finishTitle(skip) {
       const i = queue[qIdx];
       const title = skip ? '' : document.getElementById('title-input').value.trim();
-      exposed.push({ clip: i, title, products: [...prodSel] });
+      exposed.push({ clip: i, type: queueSourceType, title, products: [...prodSel] });
       feedSel.delete(i);
       closeModal('m-title');
       qIdx++;
       if (qIdx < queue.length) {
         setTimeout(openProductStep, 240);
       } else {
-        renderExposed(); renderFeed();
+        renderExposed(); renderFeed(); renderReviewFeed();
         setTimeout(() => {
           goScreen('s-manage');
           toast(qTotal + '개 콘텐츠가 위젯에 노출돼요');
@@ -2725,7 +2824,7 @@
     }
     function cancelQueue() {
       closeModal('m-product'); closeModal('m-title');
-      if (qIdx > 0) { renderExposed(); renderFeed(); }
+      if (qIdx > 0) { renderExposed(); renderFeed(); renderReviewFeed(); }
       queue = [];
     }
 
@@ -2748,7 +2847,8 @@
       ro.className = reorderMode ? 'btn btn-primary btn-sm' : 'btn btn-grey btn-sm';
       sub.textContent = exposed.length + '개 콘텐츠가 쇼핑몰에 노출되고 있어요';
       exposed.forEach((e, pos) => {
-        const c = CLIPS[e.clip];
+        const src = e.type === 'review' ? REVIEWS : CLIPS;
+        const c = src[e.clip];
         const row = document.createElement('div');
         row.className = 'exp-row' + (reorderMode ? ' reordering' : '');
         let prodHtml = '';
