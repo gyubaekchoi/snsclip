@@ -185,8 +185,9 @@
     .tier-2 .ico:hover { background: var(--hover); }
     
     .tier-2 .ico.active {
-      background: #F0F0FF;
-      color: #6236FF;
+      background: #FAFAFA;
+      color: var(--t1);
+      border: 1px solid #E3E4E7;
     }
     
     .tier-3 {
@@ -231,9 +232,13 @@
     .tier-3 .nav-item:hover { background: var(--hover); }
     
     .tier-3 .nav-item.active {
-      color: var(--t1);
-      font-weight: 700;
-      background: var(--hover);
+      color: #5B3AE0;
+      font-weight: 600;
+      background: #F4F4FE;
+    }
+
+    .tier-3 .nav-item.active::before {
+      color: #5B3AE0;
     }
 
     .main {
@@ -242,9 +247,10 @@
       flex-direction: column;
       overflow: hidden;
       background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin: 8px 8px 8px 0;
+    }
+
+    .main.has-page-header .topbar {
+      display: none;
     }
 
     .topbar {
@@ -296,12 +302,585 @@
     .content {
       flex: 1;
       overflow: auto;
-      padding: 28px 32px 90px
+      padding: 0 0 40px;
     }
 
     .content-inner {
-      max-width: 820px;
-      margin: 0 auto
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* 콘텐츠 추가 페이지(s-add) */
+    #s-add {
+      padding: 24px 24px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── 카드형 화면 공통 바디(계정바 + 카드들) ── */
+    .scr-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Figma-style page header */
+    .pg-header {
+      background: #FFFFFF;
+      padding: 24px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .pg-header .pg-left {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pg-header .pg-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pg-header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: #2A2D38;
+      margin: 0;
+    }
+
+    .pg-header .pg-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .pg-set-btn {
+      height: 36px;
+      padding: 0 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--t1);
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+
+    .pg-set-btn:hover {
+      background: var(--hover);
+    }
+
+    /* 헤더 토글(위젯 ON/OFF) */
+    .pg-toggle {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .pg-toggle input {
+      display: none;
+    }
+
+    .pg-toggle .tr {
+      position: absolute;
+      inset: 0;
+      background: var(--border);
+      border-radius: 99px;
+      transition: background .18s;
+    }
+
+    .pg-toggle .th {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .18);
+      transition: transform .18s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .pg-toggle input:checked+.tr {
+      background: #5B3AE0;
+    }
+
+    .pg-toggle input:checked+.tr .th {
+      transform: translateX(18px);
+    }
+
+    /* ── 계정 연결 바 ── */
+    .acct-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 24px;
+    }
+
+    .acct-bar .ig-acct {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--t1);
+    }
+
+    .acct-bar .fb-side {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .acct-bar .fb-acct {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--t2);
+    }
+
+    .acct-bar .sns-logo {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .acct-bar .acct-change {
+      font-size: 14px;
+      color: var(--t2);
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .acct-bar .acct-change:hover {
+      color: var(--t1);
+    }
+
+    /* ── 위젯 설치 카드(설치 전) — onb-card 구조 재사용 ── */
+    .onb-hero-title.sm {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    /* ── 설치 진행 상태 카드 ── */
+    .status-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+    }
+
+    .status-card .sc-thumb {
+      width: 112px;
+      height: 64px;
+      border-radius: 8px;
+      background: #ECECEE;
+      margin-bottom: 10px;
+    }
+
+    .status-card .sc-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--t1);
+      letter-spacing: -0.01em;
+    }
+
+    .status-card .sc-sub {
+      font-size: 14px;
+      color: var(--t3);
+    }
+
+    /* ── 설치 확인 카드 ── */
+    .verify-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .verify-card .vc-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--t1);
+      letter-spacing: -0.01em;
+    }
+
+    .verify-card .vc-btns {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* 검정/아웃라인 버튼 */
+    .btn-dark {
+      background: #1A1D24;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .btn-dark:hover {
+      background: #000;
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--t1);
+      border: 1px solid var(--border);
+      font-weight: 600;
+    }
+
+    .btn-outline:hover {
+      background: var(--hover);
+    }
+
+    /* ── SNS 콘텐츠 카드 ── */
+    .content-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .content-card .cc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .content-card .cc-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--t1);
+      letter-spacing: -0.01em;
+    }
+
+    .cc-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 56px 0;
+    }
+
+    .cc-empty p {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--t1);
+    }
+
+    .cc-empty p b {
+      font-weight: 700;
+    }
+
+    /* ── 설치 위치 선택 다이얼로그 ── */
+    .modal-xl {
+      max-width: 640px;
+    }
+
+    .opt-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .opt {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .opt.sel {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .opt .opt-left {
+      flex: 1;
+      padding: 18px 20px;
+      min-width: 0;
+    }
+
+    .opt .opt-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .opt .opt-cb {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    .opt.sel .opt-cb {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .opt .opt-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--t1);
+    }
+
+    .opt textarea {
+      width: 100%;
+      height: 86px;
+      resize: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-family: inherit;
+      letter-spacing: inherit;
+      color: var(--t1);
+    }
+
+    .opt textarea::placeholder {
+      color: var(--t4);
+    }
+
+    .opt textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .opt .opt-img {
+      width: 220px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #F1F1F3, #FAFAFA);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--t4);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .modal-foot.spread {
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-foot.spread .foot-link {
+      flex: none;
+    }
+
+    .modal-foot.spread .foot-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .modal-foot.spread .foot-btns .btn {
+      flex: none;
+      padding: 0 18px;
+    }
+
+    /* ── 수동 설치 칩/박스 ── */
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      height: 36px;
+      padding: 0 16px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--t2);
+      cursor: pointer;
+      transition: all .12s;
+    }
+
+    .chip.on {
+      background: #1A1D24;
+      color: #fff;
+      border-color: #1A1D24;
+    }
+
+    .manual-box {
+      margin-top: 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .manual-img {
+      height: 170px;
+      background: #FAFAFA;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--t3);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .modal-foot.right {
+      justify-content: flex-end;
+    }
+
+    .modal-foot.right .btn {
+      flex: none;
+      padding: 0 22px;
+    }
+
+    .pg-header .pg-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      color: #5D6374;
+    }
+
+    .pg-header .guide-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 4px;
+      color: #424756;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .pg-header .guide-link:hover {
+      background: #F4F4F5;
+    }
+
+    .pg-header .guide-link svg {
+      width: 20px;
+      height: 20px;
+      stroke: #424756;
+    }
+
+    /* Onboarding card */
+    .onb-wrap {
+      padding: 0 24px;
+    }
+
+    .onb-card {
+      background: #FFFFFF;
+      border: 1px solid #E3E4E7;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .onb-card-bg {
+      padding: 24px 24px 0;
+    }
+
+    .onb-hero {
+      background: transparent;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 505px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .onb-hero-title {
+      padding-top: 16px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: #2A2D38;
+      text-align: center;
+    }
+
+    .onb-hero-img {
+      margin-top: 38px;
+      width: 100%;
+      flex: 1;
+      background: #FAFAFA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #2A2D38;
+    }
+
+    .onb-card-foot {
+      padding: 24px;
+    }
+
+    .onb-cta {
+      width: 100%;
+      height: 48px;
+      background: #1A1D24;
+      color: #FFFFFF;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      border: none;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .onb-cta:hover {
+      background: #000000;
     }
 
     /* ───────── common ───────── */
@@ -754,10 +1333,33 @@
       white-space: nowrap
     }
 
+    .exp-row .et-input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 7px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      letter-spacing: inherit;
+      color: var(--t1);
+      background: #fff;
+    }
+
+    .exp-row .et-input::placeholder {
+      color: var(--t4);
+      font-weight: 500;
+    }
+
+    .exp-row .et-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
     .exp-row .ea {
       font-size: 12px;
       color: var(--t3);
-      margin-top: 3px
+      margin-top: 5px
     }
 
     .exp-row .stats {
@@ -1104,6 +1706,343 @@
     .bulk-bar .bc b {
       color: var(--accent);
       font-weight: 600
+    }
+
+    /* ── 콘텐츠 추가 탭 ── */
+    .add-tabs {
+      display: flex;
+      gap: 24px;
+      border-bottom: 1px solid var(--border);
+      margin: 16px 0 16px;
+    }
+
+    .add-tab {
+      padding: 10px 2px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--t3);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+
+    .add-tab:hover {
+      color: var(--t2);
+    }
+
+    .add-tab.on {
+      color: var(--t1);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── 리뷰에서 추가 ── */
+    .review-card {
+      padding: 0 !important;
+      overflow: hidden;
+    }
+
+    .rv-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-soft);
+      flex-wrap: wrap;
+    }
+
+    .rv-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--t1);
+    }
+
+    .rv-filter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .rv-check {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--t2);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .rv-check input {
+      display: none;
+    }
+
+    .rv-check .cb {
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 11px;
+      background: #fff;
+    }
+
+    .rv-check input:checked+.cb {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .rv-date,
+    .rv-search {
+      height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0 12px;
+      font-size: 13px;
+      color: var(--t1);
+      background: #fff;
+    }
+
+    .rv-date {
+      width: 168px;
+      color: var(--t3);
+    }
+
+    .rv-search {
+      width: 190px;
+    }
+
+    .rv-date:focus,
+    .rv-search:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .rv-list {
+      max-height: 560px;
+      overflow-y: auto;
+    }
+
+    .rv-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border-soft);
+      cursor: pointer;
+      transition: background .1s;
+    }
+
+    .rv-row:hover {
+      background: var(--hover);
+    }
+
+    .rv-row.sel {
+      background: var(--accent-bg);
+    }
+
+    .rv-cb {
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 11px;
+      background: #fff;
+      flex-shrink: 0;
+      margin-top: 22px;
+    }
+
+    .rv-row.sel .rv-cb {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .rv-prod {
+      width: 118px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rv-prod .rp-thumb {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--border-soft);
+      object-fit: cover;
+    }
+
+    .rv-prod .rp-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #5B3AE0;
+      line-height: 1.4;
+    }
+
+    .rv-prod .rp-code {
+      font-size: 12px;
+      color: var(--t3);
+    }
+
+    .rv-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .rv-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rv-author {
+      font-size: 13px;
+      font-weight: 600;
+      color: #5B3AE0;
+    }
+
+    .rv-stars {
+      color: #5B3AE0;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .rv-senti {
+      font-size: 13px;
+      color: var(--t2);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .rv-date-r {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--t3);
+      flex-shrink: 0;
+    }
+
+    .rv-content {
+      font-size: 13px;
+      color: var(--t1);
+      margin-top: 9px;
+      line-height: 1.5;
+    }
+
+    .rv-photos {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .rv-photos .rvph {
+      width: 72px;
+      height: 72px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--border-soft);
+      flex-shrink: 0;
+    }
+
+    .rv-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+    }
+
+    .rv-count {
+      font-size: 13px;
+      color: var(--t3);
+    }
+
+    .rv-page {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--t2);
+    }
+
+    .rv-page .pg-now {
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 5px 14px;
+      font-weight: 600;
+      color: var(--t1);
+    }
+
+    .rv-page .pg-arr {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--t3);
+    }
+
+    .rv-page .pg-arr:hover {
+      background: var(--hover);
+      color: var(--t1);
+    }
+
+    /* 리뷰 선택 액션바 */
+    .rv-actionbar {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%) translateY(90px);
+      background: var(--accent);
+      color: #fff;
+      border-radius: 12px;
+      padding: 10px 10px 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .22);
+      z-index: 80;
+      transition: transform .28s cubic-bezier(.2, .8, .3, 1);
+    }
+
+    .rv-actionbar.on {
+      transform: translateX(-50%);
+    }
+
+    .rv-actionbar .ac-count {
+      font-size: 13.5px;
+      font-weight: 500;
+    }
+
+    .rv-actionbar .ac-count b {
+      font-weight: 700;
+    }
+
+    .rv-actionbar .ac-btn {
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .rv-actionbar .ac-btn:hover {
+      background: #F1F1F3;
     }
 
     /* ───────── modal ───────── */
@@ -1491,6 +2430,118 @@
 
     .danger .t {
       color: var(--red)
+    }
+
+    /* 위젯 디자인 설정 컨트롤 */
+    .set-section-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--t3);
+    }
+
+    .design-row {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .design-row .dr-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 11px;
+    }
+
+    .design-row .dr-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--t1);
+    }
+
+    .design-row .dr-val {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--t2);
+      background: var(--accent-bg);
+      border-radius: 6px;
+      padding: 3px 9px;
+      min-width: 46px;
+      text-align: center;
+    }
+
+    .seg {
+      display: flex;
+      gap: 6px;
+    }
+
+    .seg button {
+      flex: 1;
+      height: 34px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--t2);
+      cursor: pointer;
+      transition: all .12s;
+    }
+
+    .seg button.on {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .range {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 99px;
+      background: var(--border);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 1px var(--border);
+      cursor: pointer;
+    }
+
+    .range::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid #fff;
+      cursor: pointer;
+    }
+
+    /* 위젯 미리보기 */
+    .wp-preview {
+      background: var(--bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    .wp-strip {
+      display: flex;
+      overflow: hidden;
+    }
+
+    .wp-card {
+      flex: 0 0 auto;
+      width: 62px;
+      height: 92px;
+      background: linear-gradient(135deg, #C7CBD4, #E7E9EE);
     }
 
     /* toggle */
@@ -1882,8 +2933,8 @@
       
       <div class="tier-3">
         <div class="nav-group">
-          <div class="nav-label">리뷰 디자인 설정</div>
-          <div class="nav-item">공통 설정</div>
+          <div class="nav-label">디자인 설정</div>
+          <div class="nav-item">공통 디자인</div>
           <div class="nav-item">리뷰 상세보기 화면</div>
           <div class="nav-item">리뷰 작성 화면</div>
           <div class="nav-item">리뷰 작성 유도</div>
@@ -1892,7 +2943,7 @@
           <div class="nav-label">위젯 디자인 설정</div>
           <div class="nav-item">위젯 세트 관리</div>
           <div class="nav-item">인스타그램 피드</div>
-          <div class="nav-item active">SNS 클립</div>
+          <div class="nav-item active">SNS 숏폼 (가칭)</div>
           <div class="nav-item">세일즈 티커</div>
           <div class="nav-item">키워드 위젯</div>
         </div>
@@ -1900,116 +2951,94 @@
     </aside>
 
     <div class="main">
-      <div class="topbar">
-        <div class="crumb">위젯 &nbsp;/&nbsp; <b>SNS 클립</b></div>
-        <div class="topbar-right">
-          <div class="shop-chip"><span class="dot"></span>샐러드샵</div>
-        </div>
-      </div>
-
       <div class="content">
         <div class="content-inner">
 
-          <!-- ═══ SCREEN 1 : 연동 전 ═══ -->
-          <section class="screen" id="s-onboard">
-            <div class="hero">
-              <div class="emoji"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg></div>
-              <h2>이제 인플루언서 텐츠로<br>구매 전환율을 높여보세요!</h2>
-              <p>인스타그램 릴스를 쇼핑몰에 위젯으로 노출하면<br>방문자가 상품을 더 오래, 더 생생하게 경험해요</p>
-              <div class="preview-strip" style="height:200px; display:flex; align-items:center; justify-content:center; background:var(--border-soft); padding:0; border:none; color:var(--t3); font-size:15px; font-weight:500;">
-                예시 이미지
-              </div>
-              <button class="btn btn-primary btn-lg" onclick="openModal('m-ig')">인스타그램 연동하고 바로 사용하기 →</button>
-            </div>
-          </section>
-
-          <!-- ═══ SCREEN 2 : 설치 전 ═══ -->
+          <!-- ═══ SCREEN 1 : 설치 전 ═══ -->
           <section class="screen" id="s-ready">
-            <div class="page-head row-between">
-              <div>
-                <div class="page-title">SNS 클립 <span class="badge off">미설치</span></div>
-                <div class="page-desc">연동이 완료됐어요! 이제 위젯을 쇼핑몰에 설치해 보세요.</div>
-              </div>
-              <button class="btn btn-primary btn-md" onclick="openModal('m-how')">설치하기</button>
-            </div>
-            <div class="card row-between">
-              <div class="acct">
-                <div class="avatar">
-                  <div class="inner"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
+            <div class="pg-header">
+              <div class="pg-left">
+                <div class="pg-title-row">
+                  <h1>SNS 숏폼</h1>
+                  <label class="pg-toggle"><input type="checkbox" checked onchange="toast(this.checked?'위젯을 켰어요':'위젯을 껐어요')"><span class="tr"><span class="th"></span></span></label>
                 </div>
-                <div>
-                  <div class="acct-name">@adebc32</div>
-                  <div class="acct-sub">인스타그램 비즈니스 계정 · 연동 완료</div>
+                <div class="pg-desc">이 페이지의 기능에 대한 요약과 기대효과를 짧게 서술해요.</div>
+              </div>
+              <div class="pg-right">
+                <button class="guide-link" onclick="toast('활용 가이드는 프로토타입 범위 밖이에요')">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"></circle><line x1="10" y1="6.5" x2="10" y2="10.5"></line><circle cx="10" cy="13.5" r="0.5" fill="currentColor"></circle></svg>
+                  <span>활용 가이드</span>
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4h5v5"></path><path d="M16 4l-8 8"></path><path d="M14 11v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4"></path></svg>
+                </button>
+              </div>
+            </div>
+            <div class="scr-body">
+              <div class="onb-card">
+                <div class="onb-card-bg">
+                  <div class="onb-hero">
+                    <div class="onb-hero-title sm">위젯 설치하기</div>
+                    <div class="onb-hero-img">설치 과정 단계별로 설명</div>
+                  </div>
+                </div>
+                <div class="onb-card-foot">
+                  <button class="onb-cta" onclick="openModal('m-request')">설치 요청하기</button>
                 </div>
               </div>
-              <button class="btn btn-grey btn-sm" onclick="toast('계정 관리는 프로토타입 범위 밖이에요')">계정 관리</button>
-            </div>
-            <div class="card" style="height:240px; display:flex; align-items:center; justify-content:center; background:var(--border-soft); padding:0; border:none; color:var(--t3); font-size:15px; font-weight:500;">
-              예시 이미지
             </div>
           </section>
 
-          <!-- ═══ SCREEN 3 : 설치 후 관리 ═══ -->
+          <!-- ═══ SCREEN 3 : 설치 후 관리 (진행중 / 완료) ═══ -->
           <section class="screen" id="s-manage">
-            <div class="page-head row-between">
-              <div>
-                <div class="page-title">SNS 클립 <span class="badge live">사용중</span></div>
-                <div class="page-desc">위젯이 설치됐어요. 노출할 콘텐츠를 추가해 보세요.</div>
+            <div class="pg-header">
+              <div class="pg-left">
+                <div class="pg-title-row">
+                  <h1>SNS 숏폼</h1>
+                  <label class="pg-toggle"><input type="checkbox" checked onchange="toast(this.checked?'위젯을 켰어요':'위젯을 껐어요')"><span class="tr"><span class="th"></span></span></label>
+                </div>
+                <div class="pg-desc">이 페이지의 기능에 대한 요약과 기대효과를 짧게 서술해요.</div>
               </div>
-              <button class="btn btn-grey btn-md" onclick="openModal('m-settings')">위젯 설정</button>
-            </div>
-
-            <div class="card row-between">
-              <div class="acct">
-                <div class="avatar">
-                  <div class="inner"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
-                </div>
-                <div>
-                  <div class="acct-name">@adebc32</div>
-                  <div class="acct-sub" id="install-sub">인스타그램 비즈니스 계정 · 연동 완료</div>
-                </div>
-              </div>
-              <button class="btn btn-grey btn-sm" onclick="toast('계정 관리는 프로토타입 범위 밖이에요')">계정 관리</button>
-            </div>
-
-            <div class="card" id="manual-code-card" style="display:none">
-              <div class="row-between">
-                <div>
-                  <div class="section-title">설치 코드</div>
-                  <div class="section-sub">코드를 복사해 쇼핑몰 디자인 편집기의 원하는 위치에 붙여넣어 주세요.</div>
-                </div>
-                <div style="display:flex;gap:8px">
-                  <button class="btn btn-secondary btn-sm" onclick="copyCode()">코드 복사</button>
-                  <button class="btn btn-secondary btn-sm" onclick="hideManualCodeCard()">다시 보지 않기</button>
-                </div>
-              </div>
-              <div class="codebox"><span class="tag">&lt;div</span> <span class="attr">class</span>=<span
-                  class="str">"alphareview-sns-clip"</span> <span class="attr">data-shop</span>=<span
-                  class="str">"saladshop"</span><span class="tag">&gt;&lt;/div&gt;</span>
-                <span class="tag">&lt;script</span> <span class="attr">src</span>=<span
-                  class="str">"https://cdn.alphareview.co/widget/sns-clip.js"</span> <span
-                  class="attr">async</span><span class="tag">&gt;&lt;/script&gt;</span>
+              <div class="pg-right">
+                <button class="guide-link" onclick="toast('활용 가이드는 프로토타입 범위 밖이에요')">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"></circle><line x1="10" y1="6.5" x2="10" y2="10.5"></line><circle cx="10" cy="13.5" r="0.5" fill="currentColor"></circle></svg>
+                  <span>활용 가이드</span>
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4h5v5"></path><path d="M16 4l-8 8"></path><path d="M14 11v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4"></path></svg>
+                </button>
+                <button class="pg-set-btn" onclick="openModal('m-settings')">위젯 설정</button>
               </div>
             </div>
+            <div class="scr-body">
 
+              <!-- 설치 진행중 -->
+              <div class="status-card" id="status-installing" style="display:none">
+                <div class="sc-thumb"></div>
+                <div class="sc-title">알파리뷰팀이 설치를 진행하고 있어요.</div>
+                <div class="sc-sub">설치 완료까지 3~5 영업일 정도 소요됩니다.</div>
+              </div>
 
-            <div class="card">
-              <div class="row-between">
-                <div>
-                  <div class="section-title">노출중인 콘텐츠</div>
-                  <div class="section-sub" id="exposed-sub">현재 노출중인 콘텐츠가 없어요</div>
-                </div>
-                <div style="display:flex;gap:8px">
-                  <button class="btn btn-grey btn-sm" id="reorder-btn" onclick="toggleReorder()"
-                    style="display:none">순서변경</button>
-                  <button class="btn btn-primary btn-sm" onclick="goAddPage()">+ 추가하기</button>
+              <!-- 설치 완료 확인 -->
+              <div class="verify-card" id="status-verify" style="display:none">
+                <div class="vc-text">위젯을 설치하고 위젯이 잘 설치됐는지 꼭 확인해 주세요.</div>
+                <div class="vc-btns">
+                  <button class="btn btn-dark btn-md" onclick="confirmInstalled()">잘 설치됐어요</button>
+                  <button class="btn btn-outline btn-md" onclick="openModal('m-request')">다시 설치하기</button>
                 </div>
               </div>
-              <div class="empty-box" id="exposed-empty">
-                <p>아직 노출중인 콘텐츠가 없어요.<br>콘텐츠를 추가하면 쇼핑몰 위젯에 바로 반영돼요.</p>
-                <button class="btn btn-secondary btn-sm" onclick="goAddPage()">콘텐츠 추가하기</button>
+
+              <!-- SNS 콘텐츠 -->
+              <div class="content-card">
+                <div class="cc-head">
+                  <div class="cc-title">SNS 숏폼 콘텐츠</div>
+                  <div style="display:flex;gap:8px">
+                    <button class="btn btn-outline btn-sm" id="reorder-btn" onclick="toggleReorder()" style="display:none">순서변경</button>
+                    <button class="btn btn-dark btn-sm" id="cc-add-btn" onclick="goAddPage()" style="display:none">추가하기</button>
+                  </div>
+                </div>
+                <div class="cc-empty" id="exposed-empty">
+                  <p>현재 보여지는 <b>SNS 콘텐츠</b>가 없습니다.</p>
+                  <button class="btn btn-dark btn-sm" onclick="goAddPage()">추가하기</button>
+                </div>
+                <div class="exp-list" id="exposed-list" style="display:none"></div>
               </div>
-              <div class="exp-list" id="exposed-list" style="display:none"></div>
             </div>
           </section>
 
@@ -2020,29 +3049,82 @@
               <div class="page-title" style="font-size:15px">위젯에 보여주고 싶은 콘텐츠를 추가해 주세요</div>
             </div>
 
-            <div class="card" style="padding:18px 20px">
-              <div class="row-between" style="flex-wrap:wrap;gap:12px">
-                <div class="src-head">
-                  <div class="section-title" style="margin:0">내가 태그된 게시물</div>
-                  <span class="upd">26.03.27 마지막 업데이트</span>
-                  <button class="link-btn" onclick="toast('인스타그램에서 최신 게시물을 다시 가져왔어요')" style="background:none">새로고침
-                    ↺</button>
+            <div class="add-tabs">
+              <button class="add-tab on" id="atab-ig" onclick="switchAddTab('ig')">인스타그램에서 추가</button>
+              <button class="add-tab" id="atab-review" onclick="switchAddTab('review')">리뷰에서 추가</button>
+            </div>
+
+            <!-- 인스타그램에서 추가 -->
+            <div id="add-pane-ig">
+              <div class="acct-bar" style="margin-bottom:12px">
+                <div class="ig-acct">
+                  <svg class="sns-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="igGrad" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse"><stop stop-color="#FEDA75"/><stop offset=".3" stop-color="#FA7E1E"/><stop offset=".6" stop-color="#D62976"/><stop offset=".85" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#igGrad)"/><rect x="5" y="5" width="14" height="14" rx="4.5" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="16.5" cy="7.5" r="1" fill="#fff"/></svg>
+                  <span>@saladshop</span>
                 </div>
-                <div class="search">
-                  <span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
-                  <input id="feed-search" placeholder="작성자, 내용 검색" oninput="renderFeed()">
+                <div class="fb-side">
+                  <div class="fb-acct">
+                    <svg class="sns-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#1877F2"/><path d="M15.4 12.4h-2v6.1h-2.5v-6.1H9.4V10h1.5V8.6c0-1.6.9-2.6 2.8-2.6h1.6v2.3h-1c-.7 0-.9.3-.9.8V10h1.9l-.5 2.4z" fill="#fff"/></svg>
+                    <span>@SaladShop Official</span>
+                  </div>
+                  <span class="acct-change" onclick="toast('계정 변경은 프로토타입 범위 밖이에요')">계정변경</span>
                 </div>
               </div>
 
-              <div class="feed" id="feed">
-                <div class="feed-head">
-                  <div style="width:104px; padding-left:16px;">작성자</div>
-                  <div style="flex:1">게시글</div>
-                  <div style="width:84px">인기도</div>
-                  <div style="width:70px"></div>
+              <div class="card" style="padding:18px 20px">
+                <div class="row-between" style="flex-wrap:wrap;gap:12px">
+                  <div class="src-head">
+                    <div class="section-title" style="margin:0">내가 태그된 게시물</div>
+                    <span class="upd">26.03.27 마지막 업데이트</span>
+                    <button class="link-btn" onclick="toast('인스타그램에서 최신 게시물을 다시 가져왔어요')" style="background:none">새로고침
+                      ↺</button>
+                  </div>
+                  <div class="search">
+                    <span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+                    <input id="feed-search" placeholder="작성자, 내용 검색" oninput="renderFeed()">
+                  </div>
                 </div>
-                <div id="feed-rows"></div>
+
+                <div class="feed" id="feed">
+                  <div class="feed-head">
+                    <div style="width:104px; padding-left:16px;">작성자</div>
+                    <div style="flex:1">게시글</div>
+                    <div style="width:84px">인기도</div>
+                    <div style="width:70px"></div>
+                  </div>
+                  <div id="feed-rows"></div>
+                </div>
               </div>
+            </div>
+
+            <!-- 리뷰에서 추가 -->
+            <div id="add-pane-review" style="display:none">
+              <div class="card review-card">
+                <div class="rv-head">
+                  <div class="rv-title">리뷰</div>
+                  <div class="rv-filter">
+                    <label class="rv-check"><input type="checkbox" onchange="renderReviews()" id="rv-linked-only"><span class="cb">✓</span>상품 연동된 게시글만 보기</label>
+                    <input class="rv-date" placeholder="기간을 설정해 주세요." readonly onclick="toast('기간 설정은 프로토타입 범위 밖이에요')">
+                    <input class="rv-search" id="rv-search" placeholder="게시글 내용으로 검색" oninput="renderReviews()">
+                    <button class="btn btn-grey btn-md" onclick="renderReviews()">검색</button>
+                  </div>
+                </div>
+                <div class="rv-list" id="rv-list"></div>
+                <div class="rv-foot">
+                  <span class="rv-count" id="rv-count">0개의 게시글</span>
+                  <div class="rv-page">
+                    <span class="pg-arr">‹</span>
+                    <span class="pg-now">1</span>
+                    <span>/ 80</span>
+                    <span class="pg-arr">›</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 리뷰 선택 액션바 -->
+            <div class="rv-actionbar" id="rv-actionbar">
+              <span class="ac-count"><b id="rv-sel-count">0</b>개 선택됨</span>
+              <button class="ac-btn" onclick="addReviews()">콘텐츠로 추가</button>
             </div>
           </section>
 
@@ -2055,220 +3137,73 @@
 
   <!-- ═══════════ MODALS ═══════════ -->
 
-  <!-- 인스타그램 연동 -->
-  <div class="dim" id="m-ig">
-    <div class="modal center-modal">
-      <button class="x" onclick="closeModal('m-ig')">✕</button>
-      <div id="ig-step1">
-        <div class="ig-head">
-          <div class="ig-logo"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
-        </div>
-        <h3 style="text-align:center;padding:0">인스타그램 계정을 연동할까요?</h3>
-        <p class="sub" style="text-align:center">알파리뷰가 아래 정보에 접근하는 것을 허용해요</p>
-        <div
-          style="margin-top:16px;text-align:left;background:var(--bg);border:1px solid var(--border-soft);border-radius:9px;padding:6px 14px">
-          <div class="perm"><span class="pc">✓</span>프로필 정보 및 계정 이름</div>
-          <div class="perm"><span class="pc">✓</span>릴스 · 게시물 콘텐츠 목록</div>
-          <div class="perm"><span class="pc">✓</span>조회수 등 공개 통계</div>
-        </div>
-        <div class="modal-foot">
-          <button class="btn btn-grey btn-lg" onclick="closeModal('m-ig')">다음에 하기</button>
-          <button class="btn btn-primary btn-lg" onclick="igConnect()">연동하기</button>
-        </div>
-      </div>
-      <div id="ig-step2" style="display:none">
-        <div class="spinner"></div>
-        <h3 style="text-align:center;padding:0">계정을 연동하고 있어요</h3>
-        <p class="sub" style="text-align:center">@adebc32 계정의 콘텐츠를 가져오는 중이에요…</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 설치 방식 선택 -->
-  <div class="dim" id="m-how">
-    <div class="modal modal-wide">
-      <button class="x" onclick="closeModal('m-how')">✕</button>
-      <h3>위젯을 어떻게 설치할까요?</h3>
-      <p class="sub">쇼핑몰 환경에 맞는 설치 방법을 선택해 주세요.</p>
-      <div class="choose">
-        <button class="choice" onclick="closeModal('m-how');setTimeout(()=>openModal('m-auto'),200)">
-          <span class="rec">추천</span>
-          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
-          <div class="ct">자동으로 설치하기</div>
-          <div class="cd">카페24 연동으로 코드 작업 없이 클릭 몇 번이면 설치가 끝나요</div>
-        </button>
-        <button class="choice" onclick="closeModal('m-how');setTimeout(()=>openModal('m-manual'),200)">
-          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
-          <div class="ct">직접 설치하기</div>
-          <div class="cd">설치 코드를 복사해 원하는 위치에 직접 붙여넣을 수 있어요</div>
-        </button>
-        <button class="choice" onclick="closeModal('m-how');setTimeout(()=>openModal('m-request'),200)">
-          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"></path><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"></path><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"></path><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></svg></div>
-          <div class="ct">설치 요청하기</div>
-          <div class="cd">원하는 위치를 알려주시면 알파리뷰 팀이 직접 설치해 드려요</div>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 자동 설치 : 위치 선택 -->
-  <div class="dim" id="m-auto">
-    <div class="modal">
-      <button class="x" onclick="closeModal('m-auto')">✕</button>
-      <h3>어느 화면에 설치할까요?</h3>
-      <p class="sub">선택한 화면의 추천 위치에 위젯이 자동으로 들어가요. 나중에 변경할 수 있어요.</p>
-      <div class="pos-list">
-        <div class="pos sel" data-pos="main" onclick="togglePos(this)">
-          <div class="chk">✓</div>
-          <div>
-            <div class="pt">메인 페이지</div>
-            <div class="pd">메인 배너 아래에 숏폼 슬라이드 노출</div>
-          </div>
-          <div class="mini">
-            <div class="bar wide" style="height:11px"></div>
-            <div class="bar hl wide"></div>
-            <div class="bar half"></div>
-            <div class="bar wide"></div>
-          </div>
-        </div>
-        <div class="pos sel" data-pos="detail" onclick="togglePos(this)">
-          <div class="chk">✓</div>
-          <div>
-            <div class="pt">상품 상세 페이지</div>
-            <div class="pd">상품 정보 위에 관련 숏폼 노출</div>
-          </div>
-          <div class="mini">
-            <div class="bar half" style="height:10px"></div>
-            <div class="bar wide"></div>
-            <div class="bar hl wide"></div>
-            <div class="bar wide"></div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-foot">
-        <button class="btn btn-grey btn-lg"
-          onclick="closeModal('m-auto');setTimeout(()=>openModal('m-how'),200)">이전</button>
-        <button class="btn btn-primary btn-lg" id="auto-next" onclick="startAutoInstall()">다음</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 자동 설치 진행/완료 -->
-  <div class="dim" id="m-installing">
-    <div class="modal center-modal">
-      <div id="inst-prog">
-        <div class="spinner"></div>
-        <h3 style="text-align:center;padding:0">지금 설치를 시작할게요</h3>
-        <p class="sub" style="text-align:center">카페24 스킨에 위젯을 적용하고 있어요.<br>잠시만 기다려 주세요…</p>
-      </div>
-      <div id="inst-done" style="display:none">
-        <div class="check-pop">✓</div>
-        <h3 style="text-align:center;padding:0">설치가 완료됐어요!</h3>
-        <p class="sub" style="text-align:center">선택한 화면에 위젯이 적용됐어요.<br>이제 노출할 콘텐츠를 추가해 보세요.</p>
-        <div class="modal-foot">
-          <button class="btn btn-primary btn-lg" onclick="finishInstall('auto')">확인</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 설치 요청하기 -->
+  <!-- 설치 요청 : 위치 선택 -->
   <div class="dim" id="m-request">
-    <div class="modal">
+    <div class="modal modal-xl">
       <button class="x" onclick="closeModal('m-request')">✕</button>
-      <h3>설치하고 싶은 위치를 알려주세요</h3>
-      <p class="sub">TP팀에서 남겨주신 위치를 확인하고 위젯을 설치해 드려요.</p>
-      
-      <div style="margin-top:20px; display:flex; flex-direction:column; gap:16px;">
-        <div>
-          <div class="section-title">메인 페이지 노출 위치</div>
-          <input type="text" style="width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:8px; font-size:14px; margin-top:6px;" placeholder="예) 메인 배너 하단">
+      <h3>설치하고 싶은 위치를 알려주세요.</h3>
+      <p class="sub">알파리뷰팀이 작성한 내용을 확인하고 위젯을 설치합니다.</p>
+      <div class="opt-list">
+        <div class="opt sel" data-pos="detail" id="opt-detail">
+          <div class="opt-left">
+            <div class="opt-head" onclick="toggleOpt('detail')">
+              <div class="opt-cb">✓</div>
+              <div class="opt-name">상품 상세 페이지</div>
+            </div>
+            <textarea placeholder="Place holder"></textarea>
+          </div>
+          <div class="opt-img">미리보기</div>
         </div>
-        <div>
-          <div class="section-title">상세 페이지 노출 위치</div>
-          <input type="text" style="width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:8px; font-size:14px; margin-top:6px;" placeholder="예) 상품 정보 상단">
+        <div class="opt" data-pos="main" id="opt-main">
+          <div class="opt-left">
+            <div class="opt-head" onclick="toggleOpt('main')">
+              <div class="opt-cb">✓</div>
+              <div class="opt-name">메인 페이지</div>
+            </div>
+            <textarea placeholder="Place holder"></textarea>
+          </div>
+          <div class="opt-img">미리보기</div>
         </div>
       </div>
-      
-      <div class="modal-foot" style="margin-top:24px;">
-        <button class="btn btn-grey btn-lg"
-          onclick="closeModal('m-request');setTimeout(()=>openModal('m-how'),200)">이전</button>
-        <button class="btn btn-primary btn-lg" onclick="startRequestInstall()">설치 요청하기</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 설치 요청 진행/완료 -->
-  <div class="dim" id="m-requesting">
-    <div class="modal center-modal">
-      <div id="req-prog">
-        <div class="spinner"></div>
-        <h3 style="text-align:center;padding:0">설치를 요청하고 있어요</h3>
-        <p class="sub" style="text-align:center">TP팀에 전달할 내용을 정리하고 있어요…</p>
-      </div>
-      <div id="req-done" style="display:none">
-        <div class="check-pop">✓</div>
-        <h3 style="text-align:center;padding:0">설치 요청이 접수됐어요!</h3>
-        <p class="sub" style="text-align:center">TP팀에서 확인 후 위젯을 설치해 드릴 예정이에요.<br>설치가 완료되면 안내해 드릴게요.</p>
-        <div class="modal-foot">
-          <button class="btn btn-primary btn-lg" onclick="finishInstall('request')">확인</button>
+      <div class="modal-foot spread">
+        <a class="link-btn foot-link" onclick="closeModal('m-request');setTimeout(()=>openModal('m-manual'),200)">코드로 직접 설치하기</a>
+        <div class="foot-btns">
+          <button class="btn btn-grey btn-lg" onclick="closeModal('m-request')">닫기</button>
+          <button class="btn btn-primary btn-lg" onclick="submitRequest()">설치 요청하기</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 수동 설치 -->
+  <!-- 수동 설치 : 코드 복사 -->
   <div class="dim" id="m-manual">
     <div class="modal modal-wide">
       <button class="x" onclick="closeModal('m-manual')">✕</button>
-      <h3>코드를 복사해 원하는 위치에 설치해 주세요</h3>
-      <p class="sub">쇼핑몰 환경을 선택하면 맞는 가이드를 보여드려요.</p>
-      <div class="tabs">
-        <button class="tab on" id="tab-cafe24" onclick="switchTab('cafe24')">카페24</button>
-        <button class="tab" id="tab-direct" onclick="switchTab('direct')">직접 설치</button>
+      <h3>코드를 복사하여<br>수동으로 위젯을 설치해 주세요.</h3>
+      <div class="chip-row">
+        <button class="chip on" id="chip-cafe24" onclick="switchPlatform('cafe24')">카페24</button>
+        <button class="chip" id="chip-imweb" onclick="switchPlatform('imweb')">아임웹</button>
       </div>
-      <div class="codebox"><span class="tag">&lt;div</span> <span class="attr">class</span>=<span
-          class="str">"alphareview-sns-clip"</span> <span class="attr">data-shop</span>=<span
-          class="str">"saladshop"</span><span class="tag">&gt;&lt;/div&gt;</span>
-        <span class="tag">&lt;script</span> <span class="attr">src</span>=<span
-          class="str">"https://cdn.alphareview.co/widget/sns-clip.js"</span> <span class="attr">async</span><span
-          class="tag">&gt;&lt;/script&gt;</span>
+      <div class="manual-box">
+        <div class="manual-img" id="manual-guide-img">설치법 안내 이미지</div>
+        <button class="onb-cta" onclick="copyCode()">코드 복사하기</button>
       </div>
-      <div style="margin-top:10px"><button class="btn btn-secondary btn-md btn-block" onclick="copyCode()">코드
-          복사</button></div>
-      <div class="guide" id="guide-cafe24">
-        <div class="gstep">
-          <div class="n">1</div>
-          <div class="gt"><b>카페24 어드민 → 디자인(PC/모바일) → 디자인 편집</b>으로 이동해요</div>
-        </div>
-        <div class="gstep">
-          <div class="n">2</div>
-          <div class="gt">위젯을 노출할 페이지의 <b>HTML 편집 화면</b>을 열어요</div>
-        </div>
-        <div class="gstep">
-          <div class="n">3</div>
-          <div class="gt">원하는 위치에 복사한 코드를 <b>붙여넣고 저장</b>하면 끝!</div>
+      <div class="modal-foot spread">
+        <button class="btn btn-grey btn-lg" style="flex:none;padding:0 18px" onclick="closeModal('m-manual');setTimeout(()=>openModal('m-request'),200)">이전</button>
+        <div class="foot-btns">
+          <button class="btn btn-primary btn-lg" onclick="finishManual()">확인</button>
         </div>
       </div>
-      <div class="guide" id="guide-direct" style="display:none">
-        <div class="gstep">
-          <div class="n">1</div>
-          <div class="gt">쇼핑몰 페이지의 <b>HTML 소스</b>에 접근해요</div>
-        </div>
-        <div class="gstep">
-          <div class="n">2</div>
-          <div class="gt">위젯을 노출할 위치에 복사한 코드를 <b>붙여넣어요</b></div>
-        </div>
-        <div class="gstep">
-          <div class="n">3</div>
-          <div class="gt">배포 후 페이지를 새로고침해 <b>위젯 노출을 확인</b>해요</div>
-        </div>
-      </div>
-      <div class="modal-foot" style="align-items:center">
-        <a class="link-btn" onclick="toast('설치 가이드 문서로 이동해요 (시연용)')" style="flex:none;padding:0 8px">자세한 가이드 보기 →</a>
-        <button class="btn btn-grey btn-lg"
-          onclick="closeModal('m-manual');setTimeout(()=>openModal('m-how'),200)">이전</button>
-        <button class="btn btn-primary btn-lg" onclick="finishInstall('manual')">설치했어요</button>
+    </div>
+  </div>
+
+  <!-- 설치 접수 완료 -->
+  <div class="dim" id="m-confirm">
+    <div class="modal">
+      <h3>설치가 성공적으로 접수됐습니다.</h3>
+      <p class="sub">알파리뷰 팀이 SNS숏폼 위젯 설치를 완료하면 알려드릴게요.<br>영업일 기준으로 최대 2~3일 정도 소요될 수 있습니다.</p>
+      <div class="modal-foot right">
+        <button class="btn btn-primary btn-lg" onclick="afterRequest()">확인</button>
       </div>
     </div>
   </div>
@@ -2326,32 +3261,56 @@
     <div class="modal">
       <button class="x" onclick="closeModal('m-settings')">✕</button>
       <h3>위젯 설정</h3>
-      <p class="sub">노출 위치와 설치 방법을 관리할 수 있어요.</p>
+      <p class="sub">위젯 디자인과 설치 방법을 관리할 수 있어요.</p>
       <div style="margin-top:14px">
-        <div style="font-size:11.5px;font-weight:600;color:var(--t3);margin-bottom:2px">노출 위치</div>
-        <div class="set-row">
-          <div>
-            <div class="t">메인 페이지</div>
-            <div class="d">메인 배너 아래 숏폼 슬라이드</div>
+        <div class="set-section-label">위젯 디자인</div>
+        <div class="design-row">
+          <div class="dr-top">
+            <span class="dr-name">위젯 바깥 여백</span>
+            <span class="dr-val" id="wv-pad">24px</span>
           </div>
-          <label class="toggle"><input type="checkbox" id="tg-main" checked
-              onchange="toast(this.checked?'메인 페이지에 노출돼요':'메인 페이지 노출을 껐어요')"><span class="tr"><span
-                class="th"></span></span></label>
+          <input type="range" class="range" id="ws-pad" min="0" max="64" value="24" oninput="updateWidgetDesign()">
         </div>
-        <div class="set-row">
-          <div>
-            <div class="t">상품 상세 페이지</div>
-            <div class="d">상품 정보 위 관련 숏폼</div>
+        <div class="design-row">
+          <div class="dr-top">
+            <span class="dr-name">콘텐츠 간격</span>
+            <span class="dr-val" id="wv-gap">12px</span>
           </div>
-          <label class="toggle"><input type="checkbox" id="tg-detail" checked
-              onchange="toast(this.checked?'상품 상세에 노출돼요':'상품 상세 노출을 껐어요')"><span class="tr"><span
-                class="th"></span></span></label>
+          <input type="range" class="range" id="ws-gap" min="0" max="40" value="12" oninput="updateWidgetDesign()">
         </div>
-        <div style="font-size:11.5px;font-weight:600;color:var(--t3);margin:14px 0 2px">설치</div>
-        <div class="set-row arrow-row" onclick="closeModal('m-settings');setTimeout(()=>openModal('m-auto'),200)">
+        <div class="design-row">
+          <div class="dr-top">
+            <span class="dr-name">모서리 둥글기</span>
+            <span class="dr-val" id="wv-radius">12px</span>
+          </div>
+          <input type="range" class="range" id="ws-radius" min="0" max="28" value="12" oninput="updateWidgetDesign()">
+        </div>
+        <div class="design-row" style="border-bottom:none">
+          <div class="dr-top" style="margin-bottom:0">
+            <span class="dr-name">콘텐츠 비율</span>
+            <div class="seg" style="width:200px">
+              <button type="button" class="on" data-ratio="9:16" onclick="setWidgetRatio(this)">9:16</button>
+              <button type="button" data-ratio="4:5" onclick="setWidgetRatio(this)">4:5</button>
+              <button type="button" data-ratio="1:1" onclick="setWidgetRatio(this)">1:1</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="wp-preview">
+          <div class="wp-strip" id="wp-strip">
+            <div class="wp-card"></div>
+            <div class="wp-card"></div>
+            <div class="wp-card"></div>
+            <div class="wp-card"></div>
+            <div class="wp-card"></div>
+          </div>
+        </div>
+
+        <div class="set-section-label" style="margin:18px 0 2px">설치</div>
+        <div class="set-row arrow-row" onclick="closeModal('m-settings');setTimeout(()=>openModal('m-request'),200)">
           <div>
-            <div class="t">자동으로 다시 설치하기</div>
-            <div class="d">노출 화면을 바꾸고 자동 재설치</div>
+            <div class="t">설치 다시 요청하기</div>
+            <div class="d">노출 위치를 바꿔 다시 요청해요</div>
           </div>
           <span class="chev">›</span>
         </div>
@@ -2370,6 +3329,10 @@
           <span class="chev">›</span>
         </div>
       </div>
+      <div class="modal-foot">
+        <button class="btn btn-grey btn-lg" onclick="closeModal('m-settings')">닫기</button>
+        <button class="btn btn-primary btn-lg" onclick="saveWidgetDesign()">저장</button>
+      </div>
     </div>
   </div>
 
@@ -2379,11 +3342,11 @@
   <!-- demo bar -->
   <div class="demo-bar">
     <span>시연 이동</span>
-    <button onclick="goScreen('s-onboard')">① 연동 전</button>
-    <button onclick="goScreen('s-ready')">② 설치 전</button>
-    <button onclick="goScreen('s-manage')">③ 설치 후</button>
+    <button onclick="goScreen('s-ready')">① 설치 전</button>
+    <button onclick="setInstallState('installing');goScreen('s-manage')">② 설치 진행중</button>
+    <button onclick="setInstallState('verify');goScreen('s-manage')">③ 설치 완료</button>
     <button onclick="goAddPage()">④ 콘텐츠 추가</button>
-    <button onclick="localStorage.removeItem('hideManualCodeCard'); location.reload()">↺ 처음부터</button>
+    <button onclick="location.reload()">↺ 처음부터</button>
   </div>
 
   <script>
@@ -2402,6 +3365,17 @@
       { g: 'p3', name: '단호박 에그 샐러드', price: '10,900원' },
       { g: 'p4', name: '두부 비건 샐러드', price: '9,800원' },
       { g: 'p5', name: '시그니처 드레싱 3종 세트', price: '8,500원' },
+    ];
+    /* 리뷰 더미 데이터 (linked: 상품 연동 여부, rating 1~5, photos: 사진 개수) */
+    const REVIEWS = [
+      { author: '이알파카', rating: 5, senti: 'good', content: '이렇게까지 맛있을 일인가..? 가격값 제대로 하는 듯', date: '25.07.07', prod: 'p1', linked: true, photos: 0 },
+      { author: '샐러드러버', rating: 5, senti: 'good', content: '드레싱 조합이 미쳤어요. 매일 먹어도 안 질림 🥗', date: '25.07.06', prod: 'p1', linked: true, photos: 6 },
+      { author: '김민지', rating: 4, senti: 'soso', content: '양은 적당하고 신선해요. 배송이 조금 늦은 게 아쉬움', date: '25.07.05', prod: 'p2', linked: true, photos: 0 },
+      { author: 'fit_daily', rating: 5, senti: 'good', content: '다이어트 식단으로 최고예요. 인증샷 같이 올려요!', date: '25.07.04', prod: 'p2', linked: true, photos: 6 },
+      { author: '오늘도샐러드', rating: 3, senti: 'bad', content: '이 가격에 이 구성이면 조금 비싼 느낌. 맛은 괜찮음', date: '25.07.03', prod: 'p3', linked: false, photos: 0 },
+      { author: 'vegan_table', rating: 5, senti: 'good', content: '비건인데 이만한 구성 찾기 힘들어요. 강추합니다', date: '25.07.02', prod: 'p4', linked: true, photos: 6 },
+      { author: '러닝하는곰', rating: 4, senti: 'good', content: '운동 후에 딱이에요. 단백질 든든하게 챙겼습니다', date: '25.07.01', prod: 'p1', linked: false, photos: 0 },
+      { author: '집밥대신', rating: 5, senti: 'good', content: '재택 점심으로 매번 시켜먹어요. 신선함이 다릅니다', date: '25.06.30', prod: 'p5', linked: true, photos: 6 },
     ];
 
     /* dummy images : loremflickr(키워드) → 실패 시 picsum → 실패 시 그라디언트 */
@@ -2436,6 +3410,8 @@
 
     let exposed = [];
     let feedSel = new Set();
+    let reviewSel = new Set();
+    let addTab = 'ig';
     let queue = [];
     let qIdx = 0;
     let qTotal = 0;
@@ -2451,14 +3427,23 @@
       el.classList.remove('on'); void el.offsetWidth;
       el.classList.add('on');
       document.querySelector('.content').scrollTop = 0;
-      document.getElementById('bulk-bar').classList.toggle('on', id === 's-add' && feedSel.size > 0);
+      const bulk = document.getElementById('bulk-bar');
+      if (bulk) bulk.classList.toggle('on', id === 's-add' && feedSel.size > 0);
+    }
+    let installState = 'installing'; /* 'installing' | 'verify' | 'done' */
+    function setInstallState(state) {
+      installState = state;
+      const inst = document.getElementById('status-installing');
+      const ver = document.getElementById('status-verify');
+      if (inst) inst.style.display = state === 'installing' ? 'flex' : 'none';
+      if (ver) ver.style.display = state === 'verify' ? 'flex' : 'none';
     }
     function openModal(id) { document.getElementById(id).classList.add('on'); }
     function closeModal(id) { document.getElementById(id).classList.remove('on'); }
     document.querySelectorAll('.dim').forEach(d => {
       d.addEventListener('click', e => {
         if (e.target !== d) return;
-        if (d.id === 'm-installing') return;
+        if (d.id === 'm-confirm') return;
         if (d.id === 'm-product' || d.id === 'm-title') { cancelQueue(); return; }
         d.classList.remove('on');
       });
@@ -2472,98 +3457,75 @@
       toastTimer = setTimeout(() => t.classList.remove('on'), 2200);
     }
 
-    /* ═════════ scenario A ═════════ */
-    function igConnect() {
-      document.getElementById('ig-step1').style.display = 'none';
-      document.getElementById('ig-step2').style.display = 'block';
-      setTimeout(() => {
-        closeModal('m-ig');
-        setTimeout(() => {
-          document.getElementById('ig-step1').style.display = 'block';
-          document.getElementById('ig-step2').style.display = 'none';
-          goScreen('s-ready');
-          toast('@adebc32 계정이 연동됐어요');
-        }, 200);
-      }, 1800);
+    /* ── 설치 위치 선택 다이얼로그 ── */
+    function toggleOpt(pos) {
+      document.getElementById('opt-' + pos).classList.toggle('sel');
     }
-    function togglePos(el) {
-      el.classList.toggle('sel');
-      document.getElementById('auto-next').disabled = document.querySelectorAll('.pos.sel').length === 0;
-    }
-    function startRequestInstall() {
+    function submitRequest() {
+      const any = document.querySelectorAll('#m-request .opt.sel').length > 0;
+      if (!any) { toast('설치할 위치를 한 곳 이상 선택해 주세요'); return; }
       closeModal('m-request');
-      setTimeout(() => {
-        document.getElementById('req-prog').style.display = 'block';
-        document.getElementById('req-done').style.display = 'none';
-        openModal('m-requesting');
-        setTimeout(() => {
-          document.getElementById('req-prog').style.display = 'none';
-          document.getElementById('req-done').style.display = 'block';
-        }, 1500);
-      }, 200);
+      setTimeout(() => openModal('m-confirm'), 200);
     }
-    function startAutoInstall() {
-      closeModal('m-auto');
-      setTimeout(() => {
-        document.getElementById('inst-prog').style.display = 'block';
-        document.getElementById('inst-done').style.display = 'none';
-        openModal('m-installing');
-        setTimeout(() => {
-          document.getElementById('inst-prog').style.display = 'none';
-          document.getElementById('inst-done').style.display = 'block';
-        }, 2000);
-      }, 200);
+    /* 설치 접수 완료 → 진행중 화면 */
+    function afterRequest() {
+      closeModal('m-confirm');
+      setInstallState('installing');
+      setTimeout(() => { goScreen('s-manage'); toast('설치 요청이 접수됐어요'); }, 200);
     }
-    function finishInstall(method) {
-      closeModal('m-installing'); closeModal('m-manual'); closeModal('m-requesting');
-      if (method === 'auto') {
-        const sel = [...document.querySelectorAll('.pos.sel')].map(p => p.dataset.pos);
-        document.getElementById('tg-main').checked = sel.includes('main');
-        document.getElementById('tg-detail').checked = sel.includes('detail');
-        document.getElementById('install-sub').textContent = '인스타그램 비즈니스 계정 · 자동 설치 적용중';
-        document.getElementById('manual-code-card').style.display = 'none';
-      } else if (method === 'request') {
-        document.getElementById('install-sub').textContent = '인스타그램 비즈니스 계정 · 설치 요청 접수중';
-        document.getElementById('manual-code-card').style.display = 'none';
-      } else {
-        document.getElementById('install-sub').textContent = '인스타그램 비즈니스 계정 · 직접 설치';
-        if (localStorage.getItem('hideManualCodeCard') !== 'true') {
-          document.getElementById('manual-code-card').style.display = 'block';
-        } else {
-          document.getElementById('manual-code-card').style.display = 'none';
-        }
-      }
-      setTimeout(() => {
-        goScreen('s-manage');
-        if (method === 'auto') {
-          toast('위젯이 자동으로 설치됐어요');
-        } else if (method === 'request') {
-          toast('설치 요청이 완료됐어요');
-        } else {
-          toast('설치가 완료되면 위젯이 노출돼요');
-        }
-      }, 200);
+    /* 수동 설치 확인 → 설치 확인 화면 */
+    function finishManual() {
+      closeModal('m-manual');
+      setInstallState('verify');
+      setTimeout(() => { goScreen('s-manage'); toast('코드를 붙여넣고 설치를 확인해 주세요'); }, 200);
     }
-    function switchTab(name) {
-      document.getElementById('tab-cafe24').classList.toggle('on', name === 'cafe24');
-      document.getElementById('tab-direct').classList.toggle('on', name === 'direct');
-      document.getElementById('guide-cafe24').style.display = name === 'cafe24' ? 'flex' : 'none';
-      document.getElementById('guide-direct').style.display = name === 'direct' ? 'flex' : 'none';
+    function switchPlatform(name) {
+      document.getElementById('chip-cafe24').classList.toggle('on', name === 'cafe24');
+      document.getElementById('chip-imweb').classList.toggle('on', name === 'imweb');
+      document.getElementById('manual-guide-img').textContent =
+        (name === 'cafe24' ? '카페24' : '아임웹') + ' 설치법 안내 이미지';
     }
     function copyCode() {
       const code = '<div class="alphareview-sns-clip" data-shop="saladshop"></div>\n<script src="https://cdn.alphareview.co/widget/sns-clip.js" async><\/script>';
       if (navigator.clipboard) { navigator.clipboard.writeText(code).catch(() => { }); }
       toast('설치 코드가 복사됐어요');
     }
-    function hideManualCodeCard() {
-      document.getElementById('manual-code-card').style.display = 'none';
-      localStorage.setItem('hideManualCodeCard', 'true');
-      toast('설치 코드를 숨겼습니다');
+    /* '잘 설치됐어요' → 확인 완료 */
+    function confirmInstalled() {
+      setInstallState('done');
+      toast('위젯 설치를 확인했어요');
+    }
+
+    /* ── 위젯 디자인 설정 ── */
+    const RATIO = { '9:16': 92 / 62, '4:5': 78 / 62, '1:1': 62 / 62 };
+    let widgetRatio = '9:16';
+    function updateWidgetDesign() {
+      const pad = +document.getElementById('ws-pad').value;
+      const gap = +document.getElementById('ws-gap').value;
+      const rad = +document.getElementById('ws-radius').value;
+      document.getElementById('wv-pad').textContent = pad + 'px';
+      document.getElementById('wv-gap').textContent = gap + 'px';
+      document.getElementById('wv-radius').textContent = rad + 'px';
+      const strip = document.getElementById('wp-strip');
+      strip.style.padding = pad + 'px';
+      strip.style.gap = gap + 'px';
+      document.querySelectorAll('#wp-strip .wp-card').forEach(c => {
+        c.style.borderRadius = rad + 'px';
+        c.style.height = Math.round(62 * RATIO[widgetRatio]) + 'px';
+      });
+    }
+    function setWidgetRatio(btn) {
+      widgetRatio = btn.dataset.ratio;
+      document.querySelectorAll('.seg button').forEach(b => b.classList.toggle('on', b === btn));
+      updateWidgetDesign();
+    }
+    function saveWidgetDesign() {
+      closeModal('m-settings');
+      toast('위젯 디자인이 저장됐어요');
     }
     function uninstall() {
       closeModal('m-settings');
       exposed = []; feedSel = new Set();
-      localStorage.removeItem('hideManualCodeCard');
       renderExposed();
       setTimeout(() => { goScreen('s-ready'); toast('위젯이 해제됐어요'); }, 200);
     }
@@ -2571,10 +3533,106 @@
     /* ═════════ scenario B : add-content page ═════════ */
     function goAddPage() {
       feedSel = new Set();
+      reviewSel = new Set();
       document.getElementById('feed-search').value = '';
+      document.getElementById('rv-search').value = '';
       renderFeed();
+      renderReviews();
+      switchAddTab('ig');
       goScreen('s-add');
     }
+    /* ── 콘텐츠 추가 탭 전환 ── */
+    function switchAddTab(name) {
+      addTab = name;
+      document.getElementById('atab-ig').classList.toggle('on', name === 'ig');
+      document.getElementById('atab-review').classList.toggle('on', name === 'review');
+      document.getElementById('add-pane-ig').style.display = name === 'ig' ? 'block' : 'none';
+      document.getElementById('add-pane-review').style.display = name === 'review' ? 'block' : 'none';
+      syncReviewBar();
+    }
+    /* ── 리뷰 목록 ── */
+    function visibleReviews() {
+      const q = document.getElementById('rv-search').value.trim().toLowerCase();
+      const linkedOnly = document.getElementById('rv-linked-only').checked;
+      return REVIEWS.map((r, i) => ({ r, i })).filter(({ r }) =>
+        (!linkedOnly || r.linked) &&
+        (!q || r.content.toLowerCase().includes(q) || r.author.toLowerCase().includes(q) || PRODUCTS[+r.prod.slice(1) - 1].name.toLowerCase().includes(q))
+      );
+    }
+    function reviewStars(n) {
+      return '★★★★★☆☆☆☆☆'.slice(5 - n, 10 - n);
+    }
+    function sentiText(s) {
+      return s === 'good' ? '😊 만족' : s === 'soso' ? '😐 보통' : '😡 불만족';
+    }
+    function renderReviews() {
+      const wrap = document.getElementById('rv-list');
+      const list = visibleReviews();
+      wrap.innerHTML = '';
+      list.forEach(({ r, i }) => {
+        const prod = PRODUCTS[+r.prod.slice(1) - 1];
+        const sel = reviewSel.has(i);
+        const exp = isReviewExposed(i);
+        const row = document.createElement('div');
+        row.className = 'rv-row' + (sel ? ' sel' : '');
+        let photos = '';
+        if (r.photos) {
+          let ph = '';
+          for (let k = 0; k < r.photos; k++) {
+            const seed = 'rev' + i + '_' + k;
+            ph += '<img class="rvph" loading="lazy" src="https://picsum.photos/seed/' + seed + '/160/160" onerror="this.style.visibility=\'hidden\'">';
+          }
+          photos = '<div class="rv-photos">' + ph + '</div>';
+        }
+        row.innerHTML =
+          '<div class="rv-cb">' + (sel ? '✓' : '') + '</div>' +
+          '<div class="rv-prod">' +
+          '<div class="rp-thumb pthumb ' + prod.g + '"></div>' +
+          '<div class="rp-name">' + prod.name + '</div>' +
+          '<div class="rp-code">' + prod.price + '</div>' +
+          '</div>' +
+          '<div class="rv-body">' +
+          '<div class="rv-top">' +
+          '<span class="rv-author">' + r.author + '</span>' +
+          '<span class="rv-stars">' + reviewStars(r.rating) + '</span>' +
+          '<span class="rv-senti">' + sentiText(r.senti) + '</span>' +
+          '<span class="rv-date-r">' + r.date + (exp ? ' · <b style="color:var(--green)">노출중</b>' : '') + '</span>' +
+          '</div>' +
+          '<div class="rv-content">' + r.content + '</div>' +
+          photos +
+          '</div>';
+        row.onclick = () => { toggleReviewSel(i); };
+        wrap.appendChild(row);
+      });
+      if (!list.length) {
+        wrap.innerHTML = '<div style="text-align:center;color:var(--t3);font-size:13px;padding:48px 0">조건에 맞는 리뷰가 없어요</div>';
+      }
+      document.getElementById('rv-count').textContent = list.length + '개의 게시글';
+      syncReviewBar();
+      dressImages();
+    }
+    function toggleReviewSel(i) {
+      if (reviewSel.has(i)) reviewSel.delete(i); else reviewSel.add(i);
+      renderReviews();
+    }
+    function syncReviewBar() {
+      const bar = document.getElementById('rv-actionbar');
+      const show = addTab === 'review' && reviewSel.size > 0;
+      bar.classList.toggle('on', show);
+      document.getElementById('rv-sel-count').textContent = reviewSel.size;
+    }
+    function addReviews() {
+      if (!reviewSel.size) return;
+      const n = reviewSel.size;
+      [...reviewSel].forEach(i => {
+        if (!isReviewExposed(i)) exposed.push({ type: 'review', review: i });
+      });
+      reviewSel = new Set();
+      renderExposed();
+      syncReviewBar();
+      setTimeout(() => { goScreen('s-manage'); toast(n + '개 리뷰가 위젯에 노출돼요'); }, 100);
+    }
+    const isReviewExposed = i => exposed.some(e => e.type === 'review' && e.review === i);
     function visibleClips() {
       const q = document.getElementById('feed-search').value.trim().toLowerCase();
       return CLIPS.map((c, i) => ({ c, i })).filter(({ c, i }) =>
@@ -2716,24 +3774,49 @@
     function renderExposed() {
       const list = document.getElementById('exposed-list');
       const empty = document.getElementById('exposed-empty');
-      const sub = document.getElementById('exposed-sub');
       const ro = document.getElementById('reorder-btn');
+      const addBtn = document.getElementById('cc-add-btn');
       list.innerHTML = '';
       if (exposed.length === 0) {
-        list.style.display = 'none'; empty.style.display = 'block'; ro.style.display = 'none';
-        sub.textContent = '현재 노출중인 콘텐츠가 없어요';
+        list.style.display = 'none'; empty.style.display = 'flex'; ro.style.display = 'none';
+        if (addBtn) addBtn.style.display = 'none';
         reorderMode = false;
         return;
       }
       empty.style.display = 'none'; list.style.display = 'flex';
       ro.style.display = 'inline-flex';
+      if (addBtn) addBtn.style.display = 'inline-flex';
       ro.textContent = reorderMode ? '완료' : '순서변경';
-      ro.className = reorderMode ? 'btn btn-primary btn-sm' : 'btn btn-grey btn-sm';
-      sub.textContent = exposed.length + '개 콘텐츠가 쇼핑몰에 노출되고 있어요';
+      ro.className = reorderMode ? 'btn btn-dark btn-sm' : 'btn btn-outline btn-sm';
       exposed.forEach((e, pos) => {
-        const c = CLIPS[e.clip];
         const row = document.createElement('div');
         row.className = 'exp-row' + (reorderMode ? ' reordering' : '');
+        const lead = reorderMode
+          ? '<div class="ord-btns"><button ' + (pos === 0 ? 'disabled' : '') + ' data-mv="up">↑</button><button ' + (pos === exposed.length - 1 ? 'disabled' : '') + ' data-mv="down">↓</button></div>'
+          : '<div style="width:18px;text-align:center;color:var(--t4);font-size:11.5px;font-weight:600;flex-shrink:0">' + (pos + 1) + '</div>';
+        const kebab = reorderMode ? '' : '<button class="kebab">⋮</button>';
+        if (e.type === 'review') {
+          const r = REVIEWS[e.review];
+          const prod = PRODUCTS[+r.prod.slice(1) - 1];
+          row.innerHTML =
+            lead +
+            '<div class="pthumb ' + prod.g + '" style="width:44px;height:44px;border-radius:8px;flex-shrink:0;overflow:hidden"></div>' +
+            '<div class="meta">' +
+            '<input class="et-input" placeholder="' + escAttr(r.content) + '" value="' + escAttr(e.title || '') + '">' +
+            '<div class="ea">' + r.author + ' · <span style="color:#5B3AE0">' + reviewStars(r.rating) + '</span> · ' + prod.name + '</div>' +
+            '</div>' +
+            '<div class="prod-stack"><span class="pl" style="margin:0;background:#EEF;color:#5B3AE0;font-weight:600">리뷰</span></div>' +
+            kebab;
+          if (reorderMode) {
+            row.querySelectorAll('[data-mv]').forEach(b => { b.onclick = () => { moveExposed(pos, b.dataset.mv === 'up' ? -1 : 1); }; });
+          } else {
+            row.querySelector('.kebab').onclick = (ev) => { ev.stopPropagation(); openKebab(row, pos); };
+            wireTitleInput(row, pos);
+          }
+          list.appendChild(row);
+          return;
+        }
+        const c = CLIPS[e.clip];
         let prodHtml = '';
         if (e.products.length) {
           const pvs = e.products.slice(0, 3).map(pi => '<div class="pv ' + PRODUCTS[pi].g + '"></div>').join('');
@@ -2742,27 +3825,34 @@
           prodHtml = '<div class="prod-stack"><span class="pl" style="margin:0">연동 상품 없음</span></div>';
         }
         row.innerHTML =
-          (reorderMode
-            ? '<div class="ord-btns"><button ' + (pos === 0 ? 'disabled' : '') + ' data-mv="up">↑</button><button ' + (pos === exposed.length - 1 ? 'disabled' : '') + ' data-mv="down">↓</button></div>'
-            : '<div style="width:18px;text-align:center;color:var(--t4);font-size:11.5px;font-weight:600;flex-shrink:0">' + (pos + 1) + '</div>') +
+          lead +
           '<div class="thumb clip ' + c.g + '" style="width:44px;height:66px"></div>' +
           '<div class="meta">' +
-          '<div class="et">' + (e.title || c.cap) + '</div>' +
-          '<div class="ea">' + c.author + '</div>' +
-          '<div class="stats">조회 ' + c.views + ' · ❤️ ' + c.likes + ' · 💬 ' + c.cmts + '</div>' +
+          '<input class="et-input" placeholder="' + escAttr(c.cap) + '" value="' + escAttr(e.title || '') + '">' +
+          '<div class="ea">' + c.author + ' · 조회 ' + c.views + ' · ❤️ ' + c.likes + ' · 💬 ' + c.cmts + '</div>' +
           '</div>' +
           prodHtml +
-          (reorderMode ? '' : '<button class="kebab">⋮</button>');
+          kebab;
         if (reorderMode) {
           row.querySelectorAll('[data-mv]').forEach(b => {
             b.onclick = () => { moveExposed(pos, b.dataset.mv === 'up' ? -1 : 1); };
           });
         } else {
           row.querySelector('.kebab').onclick = (ev) => { ev.stopPropagation(); openKebab(row, pos); };
+          wireTitleInput(row, pos);
         }
         list.appendChild(row);
       });
       dressImages();
+    }
+    function escAttr(s) {
+      return (s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+    function wireTitleInput(row, pos) {
+      const inp = row.querySelector('.et-input');
+      if (!inp) return;
+      inp.onclick = (e) => e.stopPropagation();
+      inp.oninput = (e) => { exposed[pos].title = e.target.value; };
     }
     function moveExposed(pos, dir) {
       const np = pos + dir;
@@ -2779,6 +3869,17 @@
       closeKebab();
       const m = document.createElement('div');
       m.className = 'menu-pop'; m.id = 'kebab-menu';
+      if (exposed[pos] && exposed[pos].type === 'review') {
+        m.innerHTML = '<button class="dz" data-act="del">노출 해제</button>';
+        m.querySelector('[data-act=del]').onclick = () => {
+          closeKebab();
+          exposed.splice(pos, 1);
+          renderExposed();
+          toast('콘텐츠 노출을 해제했어요');
+        };
+        row.appendChild(m);
+        return;
+      }
       m.innerHTML =
         '<button data-act="title">제목 수정</button>' +
         '<button data-act="prod">연동 상품 변경</button>' +
@@ -2817,7 +3918,10 @@
     document.addEventListener('click', closeKebab);
 
     /* ═════════ init ═════════ */
-    goScreen('s-onboard');
+    setInstallState('installing');
+    renderExposed();
+    updateWidgetDesign();
+    goScreen('s-ready');
     dressImages();
   </script>
 </body>
