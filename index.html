@@ -75,7 +75,7 @@
       height: 100vh;
       background: #FFFFFF;
     }
-
+    
     .tier-1 {
       width: 76px;
       background: #F4F5F7;
@@ -85,14 +85,14 @@
       padding: 16px 0 24px 12px;
       justify-content: space-between;
     }
-
+    
     .app-icons {
       display: flex;
       flex-direction: column;
       gap: 12px;
       width: 100%;
     }
-
+    
     .app-icon {
       display: flex;
       flex-direction: column;
@@ -103,11 +103,11 @@
       border-radius: 14px 0 0 14px;
       transition: background 0.1s;
     }
-
+    
     .app-icon.active {
       background: #FFFFFF;
     }
-
+    
     .app-icon .logo-img {
       width: 34px;
       height: 34px;
@@ -120,33 +120,24 @@
       font-weight: 800;
       font-family: Arial, sans-serif;
     }
-
-    .app-icon .logo-img.purple {
-      background: #6236FF;
-    }
-
-    .app-icon .logo-img.red {
-      background: #FF453A;
-    }
-
-    .app-icon .logo-img.blue {
-      background: #0A84FF;
-    }
-
+    .app-icon .logo-img.purple { background: #6236FF; }
+    .app-icon .logo-img.red { background: #FF453A; }
+    .app-icon .logo-img.blue { background: #0A84FF; }
+    
     .app-icon .app-name {
       font-size: 11px;
       color: var(--t2);
       font-weight: 500;
       letter-spacing: -0.02em;
     }
-
+    
     .bot-icons {
       display: flex;
       flex-direction: column;
       gap: 12px;
       padding-right: 12px;
     }
-
+    
     .bot-icons .ico {
       width: 28px;
       height: 28px;
@@ -159,11 +150,9 @@
       font-size: 14px;
       cursor: pointer;
     }
-
-    .bot-icons .ico:hover {
-      background: #A0A4AB;
-    }
-
+    
+    .bot-icons .ico:hover { background: #A0A4AB; }
+    
     .tier-2 {
       width: 60px;
       background: #FFFFFF;
@@ -173,13 +162,13 @@
       padding-top: 24px;
       border-right: 1px solid var(--border-soft);
     }
-
+    
     .tier-2 .menu-icons {
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
-
+    
     .tier-2 .ico {
       width: 40px;
       height: 40px;
@@ -192,16 +181,14 @@
       cursor: pointer;
       transition: all 0.1s;
     }
-
-    .tier-2 .ico:hover {
-      background: var(--hover);
-    }
-
+    
+    .tier-2 .ico:hover { background: var(--hover); }
+    
     .tier-2 .ico.active {
       background: #F0F0FF;
       color: #6236FF;
     }
-
+    
     .tier-3 {
       width: 210px;
       background: #FFFFFF;
@@ -209,11 +196,11 @@
       overflow-y: auto;
       border-right: 1px solid var(--border-soft);
     }
-
+    
     .tier-3 .nav-group {
       margin-bottom: 32px;
     }
-
+    
     .tier-3 .nav-label {
       font-size: 13.5px;
       font-weight: 700;
@@ -221,7 +208,7 @@
       margin-bottom: 16px;
       letter-spacing: -0.01em;
     }
-
+    
     .tier-3 .nav-item {
       font-size: 13px;
       color: var(--t2);
@@ -234,17 +221,15 @@
       gap: 6px;
       letter-spacing: -0.01em;
     }
-
+    
     .tier-3 .nav-item::before {
       content: '·';
       color: var(--t3);
       font-weight: bold;
     }
-
-    .tier-3 .nav-item:hover {
-      background: var(--hover);
-    }
-
+    
+    .tier-3 .nav-item:hover { background: var(--hover); }
+    
     .tier-3 .nav-item.active {
       color: var(--t1);
       font-weight: 700;
@@ -1858,26 +1843,12 @@
       color: var(--accent);
       font-weight: 700
     }
-
-    .clip.ph {
-      background: var(--border-soft);
-    }
-
-    .clip.ph::after {
-      display: none;
-    }
-
+    .clip.ph { background: var(--border-soft); }
+    .clip.ph::after { display: none; }
     .clip.ph .clip-text {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--t3);
-      font-size: 11px;
-      font-weight: 500;
-      text-align: center;
-      line-height: 1.4;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--t3); font-size: 11px; font-weight: 500; text-align: center; line-height: 1.4;
     }
   </style>
 </head>
@@ -1888,80 +1859,27 @@
     <aside class="sidebar">
       <div class="tier-1">
         <div class="app-icons">
-          <div class="app-icon active">
-            <div class="logo-img purple">α</div>
-            <div class="app-name">알파리뷰</div>
-          </div>
-          <div class="app-icon">
-            <div class="logo-img red">α</div>
-            <div class="app-name">알파업셀</div>
-          </div>
-          <div class="app-icon">
-            <div class="logo-img blue">α</div>
-            <div class="app-name">알파푸시</div>
-          </div>
+          <div class="app-icon active"><div class="logo-img purple">α</div><div class="app-name">알파리뷰</div></div>
+          <div class="app-icon"><div class="logo-img red">α</div><div class="app-name">알파업셀</div></div>
+          <div class="app-icon"><div class="logo-img blue">α</div><div class="app-name">알파푸시</div></div>
         </div>
         <div class="bot-icons">
-          <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg></div>
-          <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3"></circle>
-              <path
-                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
-              </path>
-            </svg></div>
-          <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="16" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg></div>
+          <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+          <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
+          <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
         </div>
       </div>
-
+      
       <div class="tier-2">
         <div class="menu-icons">
-          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="20" x2="18" y2="10"></line>
-              <line x1="12" y1="20" x2="12" y2="4"></line>
-              <line x1="6" y1="20" x2="6" y2="14"></line>
-            </svg></div>
-          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="8" y1="6" x2="21" y2="6"></line>
-              <line x1="8" y1="12" x2="21" y2="12"></line>
-              <line x1="8" y1="18" x2="21" y2="18"></line>
-              <line x1="3" y1="6" x2="3.01" y2="6"></line>
-              <line x1="3" y1="12" x2="3.01" y2="12"></line>
-              <line x1="3" y1="18" x2="3.01" y2="18"></line>
-            </svg></div>
-          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-              </polygon>
-            </svg></div>
-          <div class="ico active"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="7" height="7"></rect>
-              <rect x="14" y="3" width="7" height="7"></rect>
-              <rect x="14" y="14" width="7" height="7"></rect>
-              <rect x="3" y="14" width="7" height="7"></rect>
-            </svg></div>
-          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3"></circle>
-              <path
-                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
-              </path>
-            </svg></div>
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></div>
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <div class="ico active"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div>
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
         </div>
       </div>
-
+      
       <div class="tier-3">
         <div class="nav-group">
           <div class="nav-label">리뷰 디자인 설정</div>
@@ -1995,21 +1913,10 @@
           <!-- ═══ SCREEN 1 : 연동 전 ═══ -->
           <section class="screen" id="s-onboard">
             <div class="hero">
-              <div class="emoji"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
-                  <line x1="7" y1="2" x2="7" y2="22"></line>
-                  <line x1="17" y1="2" x2="17" y2="22"></line>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <line x1="2" y1="7" x2="7" y2="7"></line>
-                  <line x1="2" y1="17" x2="7" y2="17"></line>
-                  <line x1="17" y1="17" x2="22" y2="17"></line>
-                  <line x1="17" y1="7" x2="22" y2="7"></line>
-                </svg></div>
+              <div class="emoji"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg></div>
               <h2>이제 인플루언서 텐츠로<br>구매 전환율을 높여보세요!</h2>
               <p>인스타그램 릴스를 쇼핑몰에 위젯으로 노출하면<br>방문자가 상품을 더 오래, 더 생생하게 경험해요</p>
-              <div class="preview-strip"
-                style="height:200px; display:flex; align-items:center; justify-content:center; background:var(--border-soft); padding:0; border:none; color:var(--t3); font-size:15px; font-weight:500;">
+              <div class="preview-strip" style="height:200px; display:flex; align-items:center; justify-content:center; background:var(--border-soft); padding:0; border:none; color:var(--t3); font-size:15px; font-weight:500;">
                 예시 이미지
               </div>
               <button class="btn btn-primary btn-lg" onclick="openModal('m-ig')">인스타그램 연동하고 바로 사용하기 →</button>
@@ -2023,17 +1930,12 @@
                 <div class="page-title">SNS 클립 <span class="badge off">미설치</span></div>
                 <div class="page-desc">연동이 완료됐어요! 이제 위젯을 쇼핑몰에 설치해 보세요.</div>
               </div>
-              <button class="btn btn-primary btn-md" onclick="openModal('m-request')">설치하기</button>
+              <button class="btn btn-primary btn-md" onclick="openModal('m-how')">설치하기</button>
             </div>
             <div class="card row-between">
               <div class="acct">
                 <div class="avatar">
-                  <div class="inner"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg></div>
+                  <div class="inner"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
                 </div>
                 <div>
                   <div class="acct-name">@adebc32</div>
@@ -2042,8 +1944,7 @@
               </div>
               <button class="btn btn-grey btn-sm" onclick="toast('계정 관리는 프로토타입 범위 밖이에요')">계정 관리</button>
             </div>
-            <div class="card"
-              style="height:240px; display:flex; align-items:center; justify-content:center; background:var(--border-soft); padding:0; border:none; color:var(--t3); font-size:15px; font-weight:500;">
+            <div class="card" style="height:240px; display:flex; align-items:center; justify-content:center; background:var(--border-soft); padding:0; border:none; color:var(--t3); font-size:15px; font-weight:500;">
               예시 이미지
             </div>
           </section>
@@ -2061,12 +1962,7 @@
             <div class="card row-between">
               <div class="acct">
                 <div class="avatar">
-                  <div class="inner"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg></div>
+                  <div class="inner"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
                 </div>
                 <div>
                   <div class="acct-name">@adebc32</div>
@@ -2124,66 +2020,28 @@
               <div class="page-title" style="font-size:15px">위젯에 보여주고 싶은 콘텐츠를 추가해 주세요</div>
             </div>
 
-            <div class="tabs" style="margin: 0 20px 18px 20px;">
-              <button class="tab" id="tab-add-review" onclick="switchAddTab('review')">기존 리뷰에서 가져오기</button>
-              <button class="tab on" id="tab-add-ig" onclick="switchAddTab('ig')">인스타그램에서 가져오기</button>
-              <button class="tab" id="tab-add-tiktok" onclick="switchAddTab('tiktok')">틱톡에서 가져오기</button>
-            </div>
-
-            <div id="add-pane-review" style="display:none;">
-              <div class="card" style="padding:18px 20px; margin-top:0;">
-                <div class="row-between" style="flex-wrap:wrap;gap:12px">
-                  <div class="src-head">
-                    <div class="section-title" style="margin:0">내 쇼핑몰 베스트 리뷰</div>
-                  </div>
-                  <div class="search">
-                    <span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
-                    <input id="review-search" placeholder="작성자, 내용 검색" oninput="renderReviewFeed()">
-                  </div>
+            <div class="card" style="padding:18px 20px">
+              <div class="row-between" style="flex-wrap:wrap;gap:12px">
+                <div class="src-head">
+                  <div class="section-title" style="margin:0">내가 태그된 게시물</div>
+                  <span class="upd">26.03.27 마지막 업데이트</span>
+                  <button class="link-btn" onclick="toast('인스타그램에서 최신 게시물을 다시 가져왔어요')" style="background:none">새로고침
+                    ↺</button>
                 </div>
-                <div class="feed" id="review-feed">
-                  <div class="feed-head">
-                    <div style="width:104px; padding-left:16px;">작성자</div>
-                    <div style="flex:1">리뷰 내용</div>
-                    <div style="width:84px">도움돼요</div>
-                    <div style="width:70px"></div>
-                  </div>
-                  <div id="review-feed-rows"></div>
+                <div class="search">
+                  <span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+                  <input id="feed-search" placeholder="작성자, 내용 검색" oninput="renderFeed()">
                 </div>
               </div>
-            </div>
 
-            <div id="add-pane-ig" style="display:block;">
-              <div class="card" style="padding:18px 20px; margin-top:0;">
-                <div class="row-between" style="flex-wrap:wrap;gap:12px">
-                  <div class="src-head">
-                    <div class="section-title" style="margin:0">내가 태그된 게시물</div>
-                    <span class="upd">26.03.27 마지막 업데이트</span>
-                    <button class="link-btn" onclick="toast('인스타그램에서 최신 게시물을 다시 가져왔어요')" style="background:none">새로고침 ↺</button>
-                  </div>
-                  <div class="search">
-                    <span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
-                    <input id="feed-search" placeholder="작성자, 내용 검색" oninput="renderFeed()">
-                  </div>
+              <div class="feed" id="feed">
+                <div class="feed-head">
+                  <div style="width:104px; padding-left:16px;">작성자</div>
+                  <div style="flex:1">게시글</div>
+                  <div style="width:84px">인기도</div>
+                  <div style="width:70px"></div>
                 </div>
-
-                <div class="feed" id="feed">
-                  <div class="feed-head">
-                    <div style="width:104px; padding-left:16px;">작성자</div>
-                    <div style="flex:1">게시글</div>
-                    <div style="width:84px">인기도</div>
-                    <div style="width:70px"></div>
-                  </div>
-                  <div id="feed-rows"></div>
-                </div>
-              </div>
-            </div>
-
-            <div id="add-pane-tiktok" style="display:none;">
-              <div class="card" style="padding:18px 20px; margin-top:0;">
-                <div class="empty-box" style="margin:0">
-                  <p>틱톡 연동 기능은 준비 중이에요.</p>
-                </div>
+                <div id="feed-rows"></div>
               </div>
             </div>
           </section>
@@ -2203,12 +2061,7 @@
       <button class="x" onclick="closeModal('m-ig')">✕</button>
       <div id="ig-step1">
         <div class="ig-head">
-          <div class="ig-logo"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg></div>
+          <div class="ig-logo"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
         </div>
         <h3 style="text-align:center;padding:0">인스타그램 계정을 연동할까요?</h3>
         <p class="sub" style="text-align:center">알파리뷰가 아래 정보에 접근하는 것을 허용해요</p>
@@ -2231,6 +2084,93 @@
     </div>
   </div>
 
+  <!-- 설치 방식 선택 -->
+  <div class="dim" id="m-how">
+    <div class="modal modal-wide">
+      <button class="x" onclick="closeModal('m-how')">✕</button>
+      <h3>위젯을 어떻게 설치할까요?</h3>
+      <p class="sub">쇼핑몰 환경에 맞는 설치 방법을 선택해 주세요.</p>
+      <div class="choose">
+        <button class="choice" onclick="closeModal('m-how');setTimeout(()=>openModal('m-auto'),200)">
+          <span class="rec">추천</span>
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+          <div class="ct">자동으로 설치하기</div>
+          <div class="cd">카페24 연동으로 코드 작업 없이 클릭 몇 번이면 설치가 끝나요</div>
+        </button>
+        <button class="choice" onclick="closeModal('m-how');setTimeout(()=>openModal('m-manual'),200)">
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
+          <div class="ct">직접 설치하기</div>
+          <div class="cd">설치 코드를 복사해 원하는 위치에 직접 붙여넣을 수 있어요</div>
+        </button>
+        <button class="choice" onclick="closeModal('m-how');setTimeout(()=>openModal('m-request'),200)">
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"></path><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"></path><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"></path><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></svg></div>
+          <div class="ct">설치 요청하기</div>
+          <div class="cd">원하는 위치를 알려주시면 알파리뷰 팀이 직접 설치해 드려요</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 자동 설치 : 위치 선택 -->
+  <div class="dim" id="m-auto">
+    <div class="modal">
+      <button class="x" onclick="closeModal('m-auto')">✕</button>
+      <h3>어느 화면에 설치할까요?</h3>
+      <p class="sub">선택한 화면의 추천 위치에 위젯이 자동으로 들어가요. 나중에 변경할 수 있어요.</p>
+      <div class="pos-list">
+        <div class="pos sel" data-pos="main" onclick="togglePos(this)">
+          <div class="chk">✓</div>
+          <div>
+            <div class="pt">메인 페이지</div>
+            <div class="pd">메인 배너 아래에 숏폼 슬라이드 노출</div>
+          </div>
+          <div class="mini">
+            <div class="bar wide" style="height:11px"></div>
+            <div class="bar hl wide"></div>
+            <div class="bar half"></div>
+            <div class="bar wide"></div>
+          </div>
+        </div>
+        <div class="pos sel" data-pos="detail" onclick="togglePos(this)">
+          <div class="chk">✓</div>
+          <div>
+            <div class="pt">상품 상세 페이지</div>
+            <div class="pd">상품 정보 위에 관련 숏폼 노출</div>
+          </div>
+          <div class="mini">
+            <div class="bar half" style="height:10px"></div>
+            <div class="bar wide"></div>
+            <div class="bar hl wide"></div>
+            <div class="bar wide"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-grey btn-lg"
+          onclick="closeModal('m-auto');setTimeout(()=>openModal('m-how'),200)">이전</button>
+        <button class="btn btn-primary btn-lg" id="auto-next" onclick="startAutoInstall()">다음</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 자동 설치 진행/완료 -->
+  <div class="dim" id="m-installing">
+    <div class="modal center-modal">
+      <div id="inst-prog">
+        <div class="spinner"></div>
+        <h3 style="text-align:center;padding:0">지금 설치를 시작할게요</h3>
+        <p class="sub" style="text-align:center">카페24 스킨에 위젯을 적용하고 있어요.<br>잠시만 기다려 주세요…</p>
+      </div>
+      <div id="inst-done" style="display:none">
+        <div class="check-pop">✓</div>
+        <h3 style="text-align:center;padding:0">설치가 완료됐어요!</h3>
+        <p class="sub" style="text-align:center">선택한 화면에 위젯이 적용됐어요.<br>이제 노출할 콘텐츠를 추가해 보세요.</p>
+        <div class="modal-foot">
+          <button class="btn btn-primary btn-lg" onclick="finishInstall('auto')">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- 설치 요청하기 -->
   <div class="dim" id="m-request">
@@ -2238,25 +2178,22 @@
       <button class="x" onclick="closeModal('m-request')">✕</button>
       <h3>설치하고 싶은 위치를 알려주세요</h3>
       <p class="sub">TP팀에서 남겨주신 위치를 확인하고 위젯을 설치해 드려요.</p>
-
+      
       <div style="margin-top:20px; display:flex; flex-direction:column; gap:16px;">
         <div>
           <div class="section-title">메인 페이지 노출 위치</div>
-          <input type="text"
-            style="width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:8px; font-size:14px; margin-top:6px;"
-            placeholder="예) 메인 배너 하단">
+          <input type="text" style="width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:8px; font-size:14px; margin-top:6px;" placeholder="예) 메인 배너 하단">
         </div>
         <div>
           <div class="section-title">상세 페이지 노출 위치</div>
-          <input type="text"
-            style="width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:8px; font-size:14px; margin-top:6px;"
-            placeholder="예) 상품 정보 상단">
+          <input type="text" style="width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:8px; font-size:14px; margin-top:6px;" placeholder="예) 상품 정보 상단">
         </div>
       </div>
-
-      <div class="modal-foot" style="margin-top:24px; flex-direction:column; gap:12px;">
-        <button class="btn btn-primary btn-lg" style="flex:none; width:100%;" onclick="startRequestInstall()">설치 요청하기</button>
-        <button class="btn btn-grey btn-sm" style="flex:none; background:transparent; border:none; color:var(--t3); font-size:13px; text-decoration:underline;" onclick="closeModal('m-request');setTimeout(()=>openModal('m-manual'),200)">직접 설치하기</button>
+      
+      <div class="modal-foot" style="margin-top:24px;">
+        <button class="btn btn-grey btn-lg"
+          onclick="closeModal('m-request');setTimeout(()=>openModal('m-how'),200)">이전</button>
+        <button class="btn btn-primary btn-lg" onclick="startRequestInstall()">설치 요청하기</button>
       </div>
     </div>
   </div>
@@ -2330,7 +2267,7 @@
       <div class="modal-foot" style="align-items:center">
         <a class="link-btn" onclick="toast('설치 가이드 문서로 이동해요 (시연용)')" style="flex:none;padding:0 8px">자세한 가이드 보기 →</a>
         <button class="btn btn-grey btn-lg"
-          onclick="closeModal('m-manual');setTimeout(()=>openModal('m-request'),200)">이전</button>
+          onclick="closeModal('m-manual');setTimeout(()=>openModal('m-how'),200)">이전</button>
         <button class="btn btn-primary btn-lg" onclick="finishInstall('manual')">설치했어요</button>
       </div>
     </div>
@@ -2344,11 +2281,7 @@
       <h3>해당 클립을 보여줄 상품을 선택해 주세요</h3>
       <p class="sub" id="prod-sub">선택한 상품의 상세 페이지에 이 클립이 함께 노출돼요.</p>
       <div class="search" style="width:100%;margin-top:14px">
-        <span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg></span>
+        <span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
         <input id="prod-search" placeholder="상품명 검색" oninput="renderProducts()">
       </div>
       <div class="prod-list" id="prod-list"></div>
@@ -2371,15 +2304,7 @@
           <input class="tinput" id="title-input" maxlength="30" placeholder="예) 한 끼 샐러드 이렇게 드세요"
             oninput="updatePreview()">
           <div class="tcount"><span id="title-len">0</span>/30</div>
-          <div class="thint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              style="vertical-align: middle; margin-right: 4px; margin-top:-2px;">
-              <path d="M9 18h6"></path>
-              <path d="M10 22h4"></path>
-              <path
-                d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14">
-              </path>
-            </svg> 상품의 매력이 한눈에 보이는 짧은 제목일수록 클릭률이 높아요.</div>
+          <div class="thint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; margin-top:-2px;"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg> 상품의 매력이 한눈에 보이는 짧은 제목일수록 클릭률이 높아요.</div>
         </div>
         <div class="phone">
           <div class="pbg" id="phone-bg"></div>
@@ -2423,10 +2348,10 @@
                 class="th"></span></span></label>
         </div>
         <div style="font-size:11.5px;font-weight:600;color:var(--t3);margin:14px 0 2px">설치</div>
-        <div class="set-row arrow-row" onclick="closeModal('m-settings');setTimeout(()=>openModal('m-request'),200)">
+        <div class="set-row arrow-row" onclick="closeModal('m-settings');setTimeout(()=>openModal('m-auto'),200)">
           <div>
-            <div class="t">설치 요청하기</div>
-            <div class="d">TP팀에 설치 위치를 전달해요</div>
+            <div class="t">자동으로 다시 설치하기</div>
+            <div class="d">노출 화면을 바꾸고 자동 재설치</div>
           </div>
           <span class="chev">›</span>
         </div>
@@ -2488,20 +2413,6 @@
       g5: ['https://loremflickr.com/320/480/protein,salad?lock=15', 'https://picsum.photos/seed/clip5/320/480'],
       g6: ['https://loremflickr.com/320/480/tofu,vegan?lock=16', 'https://picsum.photos/seed/clip6/320/480'],
     };
-    const REVIEWS = [
-      { g: 'r1', author: '김*민', cap: '맛있어요! 다이어트 식단으로 최고입니다.', likes: '12', cmts: '0', views: '124' },
-      { g: 'r2', author: '이*영', cap: '재구매합니다. 신선하고 양도 많아요.', likes: '8', cmts: '0', views: '89' },
-      { g: 'r3', author: '박*준', cap: '배송 빠르고 포장 꼼꼼해요.', likes: '3', cmts: '0', views: '31' },
-      { g: 'r4', author: '정*현', cap: '소스가 너무 맛있어요.', likes: '5', cmts: '1', views: '51' },
-      { g: 'r5', author: '최*우', cap: '포만감이 엄청나요. 또 시킬게요.', likes: '1', cmts: '0', views: '17' },
-    ];
-    const REVIEW_IMG = {
-      r1: ['https://loremflickr.com/320/480/salad,food?lock=31', 'https://picsum.photos/seed/rev1/320/480'],
-      r2: ['https://loremflickr.com/320/480/salad,fresh?lock=32', 'https://picsum.photos/seed/rev2/320/480'],
-      r3: ['https://loremflickr.com/320/480/box,salad?lock=33', 'https://picsum.photos/seed/rev3/320/480'],
-      r4: ['https://loremflickr.com/320/480/sauce,salad?lock=34', 'https://picsum.photos/seed/rev4/320/480'],
-      r5: ['https://loremflickr.com/320/480/meal,salad?lock=35', 'https://picsum.photos/seed/rev5/320/480'],
-    };
     const PROD_IMG = {
       p1: ['https://loremflickr.com/240/240/chicken,salad?lock=21', 'https://picsum.photos/seed/prod1/240/240'],
       p2: ['https://loremflickr.com/240/240/ricotta,salad?lock=22', 'https://picsum.photos/seed/prod2/240/240'],
@@ -2512,9 +2423,9 @@
     function dressImages() {
       document.querySelectorAll('.clip,.pthumb,.pv,.pbg').forEach(el => {
         if (el.querySelector('img')) return;
-        const cls = [...el.classList].find(c => CLIP_IMG[c] || PROD_IMG[c] || REVIEW_IMG[c]);
+        const cls = [...el.classList].find(c => CLIP_IMG[c] || PROD_IMG[c]);
         if (!cls) return;
-        const [u, f] = CLIP_IMG[cls] || PROD_IMG[cls] || REVIEW_IMG[cls];
+        const [u, f] = CLIP_IMG[cls] || PROD_IMG[cls];
         const img = document.createElement('img');
         img.loading = 'lazy'; img.alt = '';
         img.onerror = () => { if (img.getAttribute('src') !== f) img.src = f; else img.remove(); };
@@ -2530,18 +2441,8 @@
     let qTotal = 0;
     let prodSel = new Set();
     let reorderMode = false;
-    let queueSourceType = 'ig'; // 'review' or 'ig'
 
-    function switchAddTab(tabId) {
-      document.querySelectorAll('#s-add .tab').forEach(t => t.classList.remove('on'));
-      document.getElementById('tab-add-' + tabId).classList.add('on');
-      document.getElementById('add-pane-review').style.display = 'none';
-      document.getElementById('add-pane-ig').style.display = 'none';
-      document.getElementById('add-pane-tiktok').style.display = 'none';
-      document.getElementById('add-pane-' + tabId).style.display = 'block';
-    }
-
-    const isExposed = (i, type = 'ig') => exposed.some(e => e.clip === i && e.type === type);
+    const isExposed = i => exposed.some(e => e.clip === i);
 
     /* ═════════ screens / modals / toast ═════════ */
     function goScreen(id) {
@@ -2585,6 +2486,10 @@
         }, 200);
       }, 1800);
     }
+    function togglePos(el) {
+      el.classList.toggle('sel');
+      document.getElementById('auto-next').disabled = document.querySelectorAll('.pos.sel').length === 0;
+    }
     function startRequestInstall() {
       closeModal('m-request');
       setTimeout(() => {
@@ -2597,9 +2502,27 @@
         }, 1500);
       }, 200);
     }
+    function startAutoInstall() {
+      closeModal('m-auto');
+      setTimeout(() => {
+        document.getElementById('inst-prog').style.display = 'block';
+        document.getElementById('inst-done').style.display = 'none';
+        openModal('m-installing');
+        setTimeout(() => {
+          document.getElementById('inst-prog').style.display = 'none';
+          document.getElementById('inst-done').style.display = 'block';
+        }, 2000);
+      }, 200);
+    }
     function finishInstall(method) {
-      closeModal('m-manual'); closeModal('m-requesting');
-      if (method === 'request') {
+      closeModal('m-installing'); closeModal('m-manual'); closeModal('m-requesting');
+      if (method === 'auto') {
+        const sel = [...document.querySelectorAll('.pos.sel')].map(p => p.dataset.pos);
+        document.getElementById('tg-main').checked = sel.includes('main');
+        document.getElementById('tg-detail').checked = sel.includes('detail');
+        document.getElementById('install-sub').textContent = '인스타그램 비즈니스 계정 · 자동 설치 적용중';
+        document.getElementById('manual-code-card').style.display = 'none';
+      } else if (method === 'request') {
         document.getElementById('install-sub').textContent = '인스타그램 비즈니스 계정 · 설치 요청 접수중';
         document.getElementById('manual-code-card').style.display = 'none';
       } else {
@@ -2612,7 +2535,9 @@
       }
       setTimeout(() => {
         goScreen('s-manage');
-        if (method === 'request') {
+        if (method === 'auto') {
+          toast('위젯이 자동으로 설치됐어요');
+        } else if (method === 'request') {
           toast('설치 요청이 완료됐어요');
         } else {
           toast('설치가 완료되면 위젯이 노출돼요');
@@ -2648,8 +2573,6 @@
       feedSel = new Set();
       document.getElementById('feed-search').value = '';
       renderFeed();
-      document.getElementById('review-search').value = '';
-      renderReviewFeed();
       goScreen('s-add');
     }
     function visibleClips() {
@@ -2658,47 +2581,12 @@
         !q || c.author.toLowerCase().includes(q) || c.cap.toLowerCase().includes(q)
       );
     }
-    function visibleReviews() {
-      const q = document.getElementById('review-search').value.trim().toLowerCase();
-      return REVIEWS.map((c, i) => ({ c, i })).filter(({ c, i }) =>
-        !q || c.author.toLowerCase().includes(q) || c.cap.toLowerCase().includes(q)
-      );
-    }
-    function renderReviewFeed() {
-      const rows = document.getElementById('review-feed-rows');
-      const list = visibleReviews();
-      rows.innerHTML = '';
-      list.forEach(({ c, i }) => {
-        const added = isExposed(i, 'review');
-        const row = document.createElement('div');
-        row.className = 'feed-row' + (added ? ' added' : '');
-        row.innerHTML =
-          '<div class="author" style="width:104px; padding-left:16px;">' + c.author + '</div>' +
-          '<div class="thumb clip ' + c.g + '" style="width:44px;height:66px"></div>' +
-          '<div class="fmeta"><div class="cap">' + c.cap + '</div>' +
-          '<a class="link-btn orig">리뷰 보기 ↗</a></div>' +
-          '<div class="fstats"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right:2px; margin-top:-2px;"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> ' + c.likes + '</div>' +
-          (added
-            ? '<div class="added-tag">노출중 ✓</div>'
-            : '<button class="btn btn-secondary btn-sm" style="width:70px">추가하기</button>');
-        if (!added) {
-          const addBtn = row.querySelector('button');
-          addBtn.onclick = () => { startQueue([i], 'review'); };
-        }
-        row.querySelector('.orig').onclick = (e) => { e.stopPropagation(); toast('원본 리뷰 상세로 이동해요 (시연용)'); };
-        rows.appendChild(row);
-      });
-      if (!list.length) {
-        rows.innerHTML = '<div style="text-align:center;color:var(--t3);font-size:12.5px;padding:36px 0">검색 결과가 없어요</div>';
-      }
-      dressImages();
-    }
     function renderFeed() {
       const rows = document.getElementById('feed-rows');
       const list = visibleClips();
       rows.innerHTML = '';
       list.forEach(({ c, i }) => {
-        const added = isExposed(i, 'ig');
+        const added = isExposed(i);
         const row = document.createElement('div');
         row.className = 'feed-row' + (added ? ' added' : '');
         row.innerHTML =
@@ -2712,7 +2600,7 @@
             : '<button class="btn btn-secondary btn-sm" style="width:70px">추가하기</button>');
         if (!added) {
           const addBtn = row.querySelector('button');
-          addBtn.onclick = () => { startQueue([i], 'ig'); };
+          addBtn.onclick = () => { startQueue([i]); };
         }
         row.querySelector('.orig').onclick = (e) => { e.stopPropagation(); toast('인스타그램 원본 게시물로 이동해요 (시연용)'); };
         rows.appendChild(row);
@@ -2741,8 +2629,7 @@
     function addSelected() { if (feedSel.size) startQueue([...feedSel]); }
 
     /* ═════════ scenario B : product + title queue ═════════ */
-    function startQueue(idxs, type = 'ig') {
-      queueSourceType = type;
+    function startQueue(idxs) {
       queue = idxs.slice(); qIdx = 0; qTotal = idxs.length;
       openProductStep();
     }
@@ -2754,8 +2641,7 @@
     function openProductStep() {
       prodSel = new Set();
       document.getElementById('prod-search').value = '';
-      const src = queueSourceType === 'review' ? REVIEWS : CLIPS;
-      const c = src[queue[qIdx]];
+      const c = CLIPS[queue[qIdx]];
       document.getElementById('prod-sub').textContent = c.author + ' · "' + c.cap.slice(0, 18) + '…" 클립이 선택한 상품 상세에 함께 노출돼요.';
       queueTag('prod-queue-tag');
       renderProducts();
@@ -2785,8 +2671,7 @@
       setTimeout(openTitleStep, 200);
     }
     function openTitleStep() {
-      const src = queueSourceType === 'review' ? REVIEWS : CLIPS;
-      const c = src[queue[qIdx]];
+      const c = CLIPS[queue[qIdx]];
       document.getElementById('title-input').value = '';
       document.getElementById('title-len').textContent = '0';
       const pb = document.getElementById('phone-bg');
@@ -2802,20 +2687,19 @@
     function updatePreview() {
       const v = document.getElementById('title-input').value;
       document.getElementById('title-len').textContent = v.length;
-      const src = queueSourceType === 'review' ? REVIEWS : CLIPS;
-      document.getElementById('phone-title').textContent = v || src[queue[qIdx]].cap;
+      document.getElementById('phone-title').textContent = v || CLIPS[queue[qIdx]].cap;
     }
     function finishTitle(skip) {
       const i = queue[qIdx];
       const title = skip ? '' : document.getElementById('title-input').value.trim();
-      exposed.push({ clip: i, type: queueSourceType, title, products: [...prodSel] });
+      exposed.push({ clip: i, title, products: [...prodSel] });
       feedSel.delete(i);
       closeModal('m-title');
       qIdx++;
       if (qIdx < queue.length) {
         setTimeout(openProductStep, 240);
       } else {
-        renderExposed(); renderFeed(); renderReviewFeed();
+        renderExposed(); renderFeed();
         setTimeout(() => {
           goScreen('s-manage');
           toast(qTotal + '개 콘텐츠가 위젯에 노출돼요');
@@ -2824,7 +2708,7 @@
     }
     function cancelQueue() {
       closeModal('m-product'); closeModal('m-title');
-      if (qIdx > 0) { renderExposed(); renderFeed(); renderReviewFeed(); }
+      if (qIdx > 0) { renderExposed(); renderFeed(); }
       queue = [];
     }
 
@@ -2847,8 +2731,7 @@
       ro.className = reorderMode ? 'btn btn-primary btn-sm' : 'btn btn-grey btn-sm';
       sub.textContent = exposed.length + '개 콘텐츠가 쇼핑몰에 노출되고 있어요';
       exposed.forEach((e, pos) => {
-        const src = e.type === 'review' ? REVIEWS : CLIPS;
-        const c = src[e.clip];
+        const c = CLIPS[e.clip];
         const row = document.createElement('div');
         row.className = 'exp-row' + (reorderMode ? ' reordering' : '');
         let prodHtml = '';
